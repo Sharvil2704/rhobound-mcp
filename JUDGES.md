@@ -37,7 +37,7 @@ to your `PATH`). On macOS:
 ### 1. Clone and run
 
 ```bash
-git clone -b rhobound-mcp https://github.com/Sharvil2704/rhobound-cli && cd rhobound-cli
+git clone https://github.com/Sharvil2704/rhobound-mcp && cd rhobound-mcp
 ```
 
 ```bash
@@ -189,7 +189,7 @@ about 4 USD in all. The machines terminate themselves 8 hours after launch, unle
 ### Step 1: the workstation: clone, make a key, note your IP (2 min)
 
 ```bash
-git clone -b rhobound-mcp https://github.com/Sharvil2704/rhobound-cli && cd rhobound-cli/bed
+git clone https://github.com/Sharvil2704/rhobound-mcp && cd rhobound-mcp/bed
 ```
 
 ```bash
@@ -206,7 +206,7 @@ Note your workstation's public IPv4: your router, your cloud console, or a servi
 Open CloudShell in your region. Upload `~/.ssh/id_ed25519_rhobound.pub` (Actions > Upload file) and fetch the script:
 
 ```bash
-curl -fsSLO https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/rhobound-mcp/bed/aws/spawn_two.sh
+curl -fsSLO https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/bed/aws/spawn_two.sh
 ```
 
 Check the plan first. It creates nothing, and prints the machines, the price against the budget and the vCPU quota:
@@ -242,7 +242,7 @@ Download `inventory.txt` (Actions > Download file). It holds the machines' IPs a
 
 ### Step 3: the workstation: connect (2 min)
 
-From `rhobound-cli/bed`:
+From `rhobound-mcp/bed`:
 
 ```bash
 mkdir -p state && mv ~/Downloads/inventory.txt state/

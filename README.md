@@ -7,6 +7,17 @@ Meta's Muse Code. rhobound measures the changed services side by side, off produ
 latency of every user-facing request in the live system. The verdict comes out signed: **pass**, **block** or
 **inconclusive**. Production is deployed only on a signed pass.
 
+> **An extension of [rhobound-cli](https://github.com/Sharvil2704/rhobound-cli),** the open-source latency engine. This
+> repository adds:
+> - **model corrections found on live AWS beds:** routed services as route nodes, calls made at once to one service as
+>   an exact batch queue (M^X/PH/c), and a Šidák-corrected variance test;
+> - **the measured A/B and the signed deploy gate,** the MCP server, the Muse Code plugin, the AWS bed and the live
+>   endpoint;
+> - **more rigorous testing:** 176 test files against the CLI's 58, the race detector, and byte-for-byte golden runs
+>   against the CLI's last release, in CI.
+>
+> What it adds to the CLI, command by command: [docs/mcp/CHANGES.md](docs/mcp/CHANGES.md).
+
 ## What it is
 
 | part | what it does | where |
@@ -75,7 +86,7 @@ hours ([JUDGES.md, tier 2](JUDGES.md#tier-2-the-gate-live-on-aws)).
 ### 1. Offline, about 10 minutes (Go 1.25+, python3, git, jq; no cloud)
 
 ```bash
-git clone -b rhobound-mcp https://github.com/Sharvil2704/rhobound-cli && cd rhobound-cli
+git clone https://github.com/Sharvil2704/rhobound-mcp && cd rhobound-mcp
 ```
 
 ```bash
@@ -109,7 +120,7 @@ The live demo, Muse Code against rhobound on AWS, is [demo/README.md](demo/READM
 
 Every command and variable is in [JUDGES.md, tier 2](JUDGES.md#tier-2-the-gate-live-on-aws).
 
-1. **Workstation:** clone, `cd rhobound-cli/bed` (run every workstation step from there), make an ssh key, and note
+1. **Workstation:** clone, `cd rhobound-mcp/bed` (run every workstation step from there), make an ssh key, and note
    your public IPv4.
 2. **AWS CloudShell:** download `bed/aws/spawn_two.sh`, then run `spawn_two.sh plan` and `spawn_two.sh up`. Save the
    inventory to `state/inventory.txt`.

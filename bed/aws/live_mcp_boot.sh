@@ -37,7 +37,7 @@ rm -rf /usr/local/go && tar -C /usr/local -xzf "/root/$f" && rm "/root/$f"
 
 say "rhobound at $LIVE_SHA"
 rm -rf "$O" && install -d -m 0755 "$O" "$O/bin" "$O/data"
-git clone -q https://github.com/Sharvil2704/rhobound-cli "$O/src" && git -C "$O/src" checkout -q "$LIVE_SHA"
+git clone -q https://github.com/Sharvil2704/rhobound-mcp "$O/src" && git -C "$O/src" checkout -q "$LIVE_SHA"
 (cd "$O/src" && go build -trimpath -o "$O/bin/rhobound" ./cmd/rhobound && cd mcp && go build -trimpath -o "$O/bin/rhobound-mcp" ./cmd/rhobound-mcp)
 
 say "the policy (the samples date from 2023: the fit's age limit is raised), the configuration, the token"

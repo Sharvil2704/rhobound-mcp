@@ -16,18 +16,18 @@
 # and one to hand out (judges). The machine stores only their sha256, and both expire with it. Never commit a token: a
 # judge who wants an endpoint of their own runs this script in their own account. About 3-5 minutes after up, status
 # says READY.
-# Env: REGION [$AWS_REGION, else ap-south-1]  REF [rhobound-mcp]  TYPE [t4g.small]  HOURS [8; at most 168, a week]
+# Env: REGION [$AWS_REGION, else ap-south-1]  REF [main]  TYPE [t4g.small]  HOURS [8; at most 168, a week]
 #      YES [0]  STATE [~/.rhobound-live]  DRYRUN [0; 1 = print every AWS change instead of making it]
 #      BOOT [tests: a local live_mcp_boot.sh instead of the one at REF's commit]
 set -euo pipefail
 REGION=${REGION:-${AWS_REGION:-ap-south-1}}
-REF=${REF:-rhobound-mcp}
+REF=${REF:-main}
 TYPE=${TYPE:-t4g.small}
 HOURS=${HOURS:-8}
 YES=${YES:-0}
 DRYRUN=${DRYRUN:-0}
 STATE=${STATE:-$HOME/.rhobound-live}
-REPO=Sharvil2704/rhobound-cli
+REPO=Sharvil2704/rhobound-mcp
 SSM_AMI=/aws/service/canonical/ubuntu/server/24.04/stable/current/arm64/hvm/ebs-gp3/ami-id
 TAG=rhobound-live
 SG_DESC="rhobound live MCP demo: HTTPS and Lets Encrypt only"   # EC2 allows only a-zA-Z0-9. _-:/()#,@[]+=&;{}!$*
@@ -135,7 +135,7 @@ Try it from a terminal (it prints "block": +4 ms on service b would break entry 
   export RHOBOUND_TOKEN=$(cat "$STATE/token-judges") H=$host
   $(curl_cmd)
 
-With Muse Code and the rhobound plugin, point its rhobound entry here (the steps: https://github.com/$REPO/blob/rhobound-mcp/demo/README.md):
+With Muse Code and the rhobound plugin, point its rhobound entry here (the steps: https://github.com/$REPO/blob/main/demo/README.md):
   $(muse_cmd "$host")
 
 An endpoint of your own instead: bash live_mcp.sh up, in your own AWS CloudShell.

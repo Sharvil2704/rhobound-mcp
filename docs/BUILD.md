@@ -26,8 +26,8 @@ go version go1.27.2 linux/arm64
 ## Get the source
 
 ```
-git clone https://github.com/Sharvil2704/rhobound-cli.git
-cd rhobound-cli
+git clone https://github.com/Sharvil2704/rhobound-mcp.git
+cd rhobound-mcp
 ```
 
 (Not run here: this machine had no network access when this page was written.)

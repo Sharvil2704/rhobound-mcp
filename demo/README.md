@@ -26,7 +26,7 @@ On Ubuntu: `sudo apt-get update && sudo apt-get install -y git curl jq`.
 Pull the repository the demo needs (its Muse Code plugin is in `integrations/muse-code`):
 
 ```bash
-git clone -b rhobound-mcp https://github.com/Sharvil2704/rhobound-cli ~/rhobound-cli
+git clone https://github.com/Sharvil2704/rhobound-mcp ~/rhobound-mcp
 ```
 
 Optionally, the challenge for your own agent: a 32-service app with a correct but slow filter to make fast
@@ -62,7 +62,7 @@ You need the setup of part 0 and a Meta API key. These commands are for macOS on
    ```
 2. Install the rhobound plugin from the clone of part 0:
    ```bash
-   muse plugins install ~/rhobound-cli/integrations/muse-code && muse plugins approve rhobound
+   muse plugins install ~/rhobound-mcp/integrations/muse-code && muse plugins approve rhobound
    ```
 3. Point Muse at the live endpoint. Muse reads the token from `RHOBOUND_TOKEN`, so it is never written to the file:
    ```bash
@@ -111,7 +111,7 @@ muse plugins remove rhobound --delete-data; muse logout
 ```
 
 ```bash
-f=~/.config/muse/settings.json && jq 'del(.mcpServers.rhobound, .mcp_servers.rhobound)' "$f" > "$f.new" && mv "$f.new" "$f"; rm -rf ~/rhobound-cli ~/maze-challenge ~/rhobound-try ~/muse-manifest.json
+f=~/.config/muse/settings.json && jq 'del(.mcpServers.rhobound, .mcp_servers.rhobound)' "$f" > "$f.new" && mv "$f.new" "$f"; rm -rf ~/rhobound-mcp ~/maze-challenge ~/rhobound-try ~/muse-manifest.json
 ```
 
 To remove Muse Code too: `rm -rf ~/.local/bin/muse ~/.config/muse ~/.local/share/muse "$HOME/Library/Application Support/Muse"`.
