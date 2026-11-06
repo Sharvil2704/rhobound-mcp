@@ -25,7 +25,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/objstore"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/objstore"
 )
 
 // EnvConfig is one environment's trace store, from server configuration (never from a tool argument).

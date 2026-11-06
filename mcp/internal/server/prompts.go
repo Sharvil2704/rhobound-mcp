@@ -8,8 +8,8 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/config"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/state"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/config"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/state"
 )
 
 // The prompts (ARCHITECTURE.md 5.7).

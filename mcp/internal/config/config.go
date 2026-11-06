@@ -20,7 +20,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/server/schemas"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/server/schemas"
 )
 
 // Schema is the configuration's schema string.

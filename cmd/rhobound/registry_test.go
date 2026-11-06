@@ -13,7 +13,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
 )
 
 // help1a2df09 is the sha256 of the help that rhobound printed at 1a2df09, before the command registry.

@@ -6,9 +6,9 @@ import (
 	"math"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/change"
-	"github.com/Sharvil2704/rhobound-cli/internal/gate"
-	"github.com/Sharvil2704/rhobound-cli/internal/report"
+	"github.com/Sharvil2704/rhobound-mcp/internal/change"
+	"github.com/Sharvil2704/rhobound-mcp/internal/gate"
+	"github.com/Sharvil2704/rhobound-mcp/internal/report"
 )
 
 // The biased constructs' widening near a change of zero (lean/Rbproofs/Lanes/ChangeBand.lean, CB-1 and CB-2).

@@ -18,11 +18,11 @@ import (
 	"github.com/modelcontextprotocol/go-sdk/jsonrpc"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/auth"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/config"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/ratelimit"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/runner"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/state"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/auth"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/config"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/ratelimit"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/runner"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/state"
 )
 
 // The fake engine below answers the CLI twins with documents shaped like the published views. Its numbers are

@@ -376,7 +376,7 @@ func RepoRoot() (string, error) {
 	}
 	for {
 		if b, err := os.ReadFile(filepath.Join(dir, "go.mod")); err == nil &&
-			strings.Contains(string(b), "module github.com/Sharvil2704/rhobound-cli\n") {
+			strings.Contains(string(b), "module github.com/Sharvil2704/rhobound-mcp\n") {
 			return dir, nil
 		}
 		up := filepath.Dir(dir)

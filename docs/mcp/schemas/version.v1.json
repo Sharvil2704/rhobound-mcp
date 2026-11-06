@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/version.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/version.v1.json",
   "title": "rhobound version --json",
   "description": "What `rhobound version --json` and `rhobound-mcp version --json` print, as one canonical JSON line: the binary's name and version, and what the go command recorded in it (docs/BUILD.md, DEPLOY_AWS.md 14). Plain `version` prints `NAME VERSION` instead.",
   "type": "object",

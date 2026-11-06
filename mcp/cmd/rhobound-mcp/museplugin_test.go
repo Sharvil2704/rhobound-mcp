@@ -29,7 +29,7 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/server"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/server"
 )
 
 func pluginRoot(t *testing.T) string { return filepath.Join(repoRoot(t), "integrations", "muse-code") }

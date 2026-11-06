@@ -21,7 +21,7 @@ import (
 	"testing"
 	"unsafe"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
 )
 
 // The span keeps its size: the new fields live in a table it points into, not in every span.

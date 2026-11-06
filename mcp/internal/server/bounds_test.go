@@ -12,8 +12,8 @@ import (
 	"github.com/modelcontextprotocol/go-sdk/jsonrpc"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/runner"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/state"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/runner"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/state"
 )
 
 // blockFits makes every fit wait until the test ends (or its job's deadline), and returns how many fits have started.

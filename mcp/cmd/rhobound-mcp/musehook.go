@@ -32,7 +32,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/state"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/state"
 )
 
 func init() { register("muse-hook", runMuseHook) }

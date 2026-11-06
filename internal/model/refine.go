@@ -5,7 +5,7 @@ package model
 import (
 	"math"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/mathx"
+	"github.com/Sharvil2704/rhobound-mcp/internal/mathx"
 )
 
 // flow is a stream of calls into a service: its rate and arrival variability.

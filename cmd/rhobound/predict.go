@@ -13,12 +13,12 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/change"
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/engine"
-	"github.com/Sharvil2704/rhobound-cli/internal/fit"
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
-	"github.com/Sharvil2704/rhobound-cli/internal/report"
+	"github.com/Sharvil2704/rhobound-mcp/internal/change"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/engine"
+	"github.com/Sharvil2704/rhobound-mcp/internal/fit"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/report"
 )
 
 // cmdPredict is `rhobound predict`. With a capture it reads the capture and prints report v1, exactly as rhobound-cli

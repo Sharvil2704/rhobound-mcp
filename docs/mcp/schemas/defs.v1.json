@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/defs.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/defs.v1.json",
   "title": "rhobound-mcp shared definitions",
   "description": "The shared definitions of ARCHITECTURE.md 5.4 (Handle to Refusal), then the ones the other schemas of this folder add. Every object is closed (additionalProperties: false) unless its description says otherwise.",
   "$defs": {

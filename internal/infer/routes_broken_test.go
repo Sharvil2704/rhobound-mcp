@@ -11,7 +11,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
 )
 
 // routeQOf is caller's route weights into callee by route name (nil without weights).

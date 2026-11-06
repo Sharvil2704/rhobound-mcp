@@ -20,9 +20,9 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/auth"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/schematest"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/server"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/auth"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/schematest"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/server"
 )
 
 // engine stands in for the rhobound binary: check admits, fit writes a fit record, context prints a view naming the

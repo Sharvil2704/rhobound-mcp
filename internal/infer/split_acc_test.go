@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/infer"
+	"github.com/Sharvil2704/rhobound-mcp/internal/infer"
 )
 
 // TestNoUnevenSplitInScenarios: the simulator splits visits over pods at random, so the even-split test must

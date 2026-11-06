@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/config.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/config.v1.json",
   "title": "rhobound-mcp.config/v1",
   "description": "The server's configuration (DEPLOY_AWS.md 14): names to locations. Tools take names, never paths, buckets or prefixes. The engine is run by absolute path after its sha256 is checked (server.engine_mismatch).",
   "type": "object",

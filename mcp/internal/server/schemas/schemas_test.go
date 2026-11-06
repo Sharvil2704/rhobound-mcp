@@ -20,12 +20,12 @@ func repoRoot(t *testing.T) string {
 	}
 	for {
 		b, err := os.ReadFile(filepath.Join(dir, "go.mod"))
-		if err == nil && strings.Contains(string(b), "module github.com/Sharvil2704/rhobound-cli\n") {
+		if err == nil && strings.Contains(string(b), "module github.com/Sharvil2704/rhobound-mcp\n") {
 			return dir
 		}
 		parent := filepath.Dir(dir)
 		if parent == dir {
-			t.Fatal("no go.mod of github.com/Sharvil2704/rhobound-cli above the test directory")
+			t.Fatal("no go.mod of github.com/Sharvil2704/rhobound-mcp above the test directory")
 		}
 		dir = parent
 	}

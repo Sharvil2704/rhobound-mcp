@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/policy.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/policy.v1.json",
   "title": "rhobound.policy/v1",
   "description": "A gate policy (ARCHITECTURE.md 6.2). Unknown keys are ignored and listed in gate.json, so this object is open; a known key with a bad value is policy.bad_value (exit 2). There is no default entry threshold: a policy that sets neither max_entry_mean_change_pct nor max_entry_mean_change_ms is refused (policy.no_threshold). Defaults: max_utilization_after 0.80, max_utilization_validated 0.58, model_band {0.163, 0.0227, simulated-p90}, misfit_max_error_pct 10, max_fit_age_h 24, evaluate_at busiest_window_7d, trusted_labels [measured-ab, measured-paired], the doubts_that_hold list of 6.2, max_preview_attempts 5, enforce false, exceptions [], block_band full. Every doubts_that_hold entry must be a registered code. model_band cannot be null when enforce is true (policy.model_band_removed), nor when block_band is model (policy.bad_value). Policies are named in server configuration, never inline from an agent (policy.inline_refused).",
   "type": "object",

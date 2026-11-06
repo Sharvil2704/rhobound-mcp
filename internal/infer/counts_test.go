@@ -13,8 +13,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/infer"
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/infer"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
 )
 
 // handCall is a call of A: its CLIENT span starts at (ms after the visit's start) and lasts dur; the callee's SERVER

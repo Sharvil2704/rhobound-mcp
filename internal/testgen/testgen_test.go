@@ -9,8 +9,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 var (

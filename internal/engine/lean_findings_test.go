@@ -13,13 +13,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/abdiff"
-	"github.com/Sharvil2704/rhobound-cli/internal/change"
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/fit"
-	"github.com/Sharvil2704/rhobound-cli/internal/gate"
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
-	"github.com/Sharvil2704/rhobound-cli/internal/report"
+	"github.com/Sharvil2704/rhobound-mcp/internal/abdiff"
+	"github.com/Sharvil2704/rhobound-mcp/internal/change"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/fit"
+	"github.com/Sharvil2704/rhobound-mcp/internal/gate"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/report"
 )
 
 var wfNow = time.Date(2026, 11, 2, 12, 0, 0, 0, time.UTC)

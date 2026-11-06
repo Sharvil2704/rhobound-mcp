@@ -25,12 +25,12 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/abdiff"
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/fit"
-	"github.com/Sharvil2704/rhobound-cli/internal/infer"
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
-	"github.com/Sharvil2704/rhobound-cli/internal/sanitize"
+	"github.com/Sharvil2704/rhobound-mcp/internal/abdiff"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/fit"
+	"github.com/Sharvil2704/rhobound-mcp/internal/infer"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/sanitize"
 )
 
 // Schema is the schema id of a change set.

@@ -9,8 +9,8 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/infer"
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/infer"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
 )
 
 // fastChain: a -> b -> c with service times of a millisecond or less, so that at 60 requests/s no service is 5% busy.

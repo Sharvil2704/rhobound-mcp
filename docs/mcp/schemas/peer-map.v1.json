@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/peer-map.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/peer-map.v1.json",
   "title": "rhobound.peer-map/v1",
   "description": "The ECS peer map, CAPTURE/peer-map.json (DATA.md 5): CLIENT peers given as an address or a DNS name, mapped to the service that answers there (trace.peer_renamed). A file that does not match this schema is refused with cluster.peer_map_invalid.",
   "type": "object",

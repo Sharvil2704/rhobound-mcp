@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/readiness.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/readiness.v1.json",
   "title": "rhobound.readiness/v1",
   "description": "An environment's readiness record (ARCHITECTURE.md 6.6): the four conditions under which enforce mode is earned. CI writes it from ledger records. The first build has no ledger: the gate parses, checks and echoes the file in gate.json, and every verdict stays advisory with gate.enforce_not_earned whatever the file says.",
   "type": "object",

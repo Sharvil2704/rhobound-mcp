@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 // batchTopo is a caller A with parallel nodes that call B n[i] times at once; B has c workers (known unless lower), serves

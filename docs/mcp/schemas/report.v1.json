@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/report.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/report.v1.json",
   "title": "rhobound-cli.report/v1",
   "description": "The JSON report of `rhobound predict CAPTURE --json` and `rhobound model --json`, as rhobound-cli printed it at commit 1a2df09 (internal/report/report.go). `predict CAPTURE` prints it forever; `predict --fit F --report v1` prints the v1 projection of report v2. $defs/base holds the keys without closing the object, so that report.v2 extends it.",
   "allOf": [{"$ref": "#/$defs/base"}],

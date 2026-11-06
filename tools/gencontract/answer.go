@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
 )
 
 // The loop's clock and inputs, as the scripted agent uses them (testdata/mcp/README.md).

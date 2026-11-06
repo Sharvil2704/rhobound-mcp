@@ -54,9 +54,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 // Options tune the inference.

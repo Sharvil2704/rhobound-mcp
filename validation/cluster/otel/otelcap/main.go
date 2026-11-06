@@ -56,7 +56,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 func main() {

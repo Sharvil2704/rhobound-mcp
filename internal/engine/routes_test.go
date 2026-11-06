@@ -12,12 +12,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/abdiff"
-	"github.com/Sharvil2704/rhobound-cli/internal/change"
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/fit"
-	"github.com/Sharvil2704/rhobound-cli/internal/infer"
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/abdiff"
+	"github.com/Sharvil2704/rhobound-mcp/internal/change"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/fit"
+	"github.com/Sharvil2704/rhobound-mcp/internal/infer"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 // routeCapture writes a capture of one service x with two routes: entry a (77% of the requests) calls x's GET /a,

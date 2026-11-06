@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/infer"
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/infer"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 // nestedTrace is one request through gw -> web -> api where web's framework opens a SERVER span inside its HTTP

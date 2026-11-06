@@ -19,8 +19,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 // The canonical form, as the cut writes it: one OTLP/JSON request per line, reduced to the canonical keep-list. The

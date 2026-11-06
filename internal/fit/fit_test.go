@@ -11,8 +11,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/infer"
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/infer"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
 )
 
 // A Float survives JSON bit for bit, non-finite values included, and nothing but a number or the three strings reads

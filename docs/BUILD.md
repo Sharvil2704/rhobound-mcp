@@ -115,17 +115,17 @@ $ dist/rhobound version
 rhobound 0.1.0-dev
 ```
 
-Do not install this repository's CLI with `go install github.com/Sharvil2704/rhobound-cli/cmd/rhobound@latest`: that
-path is the rhobound-cli repository, whose default branch is the engine without `check`, `fit`, `gate` or the MCP
-server. Install from a clone of this repository:
+Without a clone, both binaries from this repository (its module path is `github.com/Sharvil2704/rhobound-mcp`; the
+server is the nested module `mcp/`):
 
 ```
-git clone https://github.com/Sharvil2704/rhobound-mcp && cd rhobound-mcp
-go install ./cmd/rhobound
-(cd mcp && go install ./cmd/rhobound-mcp)
+go install github.com/Sharvil2704/rhobound-mcp/cmd/rhobound@latest
+go install github.com/Sharvil2704/rhobound-mcp/mcp/cmd/rhobound-mcp@latest
 ```
 
-(Built without `-ldflags`, so `rhobound version` prints `0.1.0-dev`.)
+(Not run here: it needs network access. Built without `-ldflags`, so `rhobound version` prints `0.1.0-dev`.) Do not use
+`go install github.com/Sharvil2704/rhobound-cli/cmd/rhobound@latest` for this repository's CLI: that path is the
+rhobound-cli repository, whose default branch is the engine without `check`, `fit`, `gate` or the MCP server.
 
 ## The Makefile
 
@@ -154,16 +154,16 @@ memory cap. On more cores they are shorter.
 
 ```
 $ go test -count=1 ./...
-ok  	github.com/Sharvil2704/rhobound-cli/cmd/rhobound	0.965s
-?   	github.com/Sharvil2704/rhobound-cli/e2e/demoapp	[no test files]
-ok  	github.com/Sharvil2704/rhobound-cli/e2e/imagetar	0.002s
-?   	github.com/Sharvil2704/rhobound-cli/e2e/loadgen	[no test files]
-ok  	github.com/Sharvil2704/rhobound-cli/internal/infer	31.671s
-ok  	github.com/Sharvil2704/rhobound-cli/internal/mathx	6.642s
-ok  	github.com/Sharvil2704/rhobound-cli/internal/model	0.074s
-ok  	github.com/Sharvil2704/rhobound-cli/internal/otlp	0.005s
-ok  	github.com/Sharvil2704/rhobound-cli/internal/report	0.002s
-ok  	github.com/Sharvil2704/rhobound-cli/validation/cluster/otel/otelcap	0.029s
+ok  	github.com/Sharvil2704/rhobound-mcp/cmd/rhobound	0.965s
+?   	github.com/Sharvil2704/rhobound-mcp/e2e/demoapp	[no test files]
+ok  	github.com/Sharvil2704/rhobound-mcp/e2e/imagetar	0.002s
+?   	github.com/Sharvil2704/rhobound-mcp/e2e/loadgen	[no test files]
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/infer	31.671s
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/mathx	6.642s
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/model	0.074s
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/otlp	0.005s
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/report	0.002s
+ok  	github.com/Sharvil2704/rhobound-mcp/validation/cluster/otel/otelcap	0.029s
 ```
 
 `-count=1` makes Go run them again instead of printing a cached result. They cover: the CLI on the example capture
@@ -214,16 +214,16 @@ With coverage:
 
 ```
 $ go test -count=1 -cover ./...
-ok  	github.com/Sharvil2704/rhobound-cli/cmd/rhobound	0.966s	coverage: 90.3% of statements
-	github.com/Sharvil2704/rhobound-cli/e2e/demoapp		coverage: 0.0% of statements
-ok  	github.com/Sharvil2704/rhobound-cli/e2e/imagetar	0.003s	coverage: 35.4% of statements
-	github.com/Sharvil2704/rhobound-cli/e2e/loadgen		coverage: 0.0% of statements
-ok  	github.com/Sharvil2704/rhobound-cli/internal/infer	32.772s	coverage: 96.7% of statements
-ok  	github.com/Sharvil2704/rhobound-cli/internal/mathx	6.728s	coverage: 99.0% of statements
-ok  	github.com/Sharvil2704/rhobound-cli/internal/model	0.074s	coverage: 92.1% of statements
-ok  	github.com/Sharvil2704/rhobound-cli/internal/otlp	0.006s	coverage: 91.3% of statements
-ok  	github.com/Sharvil2704/rhobound-cli/internal/report	0.002s	coverage: 60.6% of statements
-ok  	github.com/Sharvil2704/rhobound-cli/validation/cluster/otel/otelcap	0.031s	coverage: 79.9% of statements
+ok  	github.com/Sharvil2704/rhobound-mcp/cmd/rhobound	0.966s	coverage: 90.3% of statements
+	github.com/Sharvil2704/rhobound-mcp/e2e/demoapp		coverage: 0.0% of statements
+ok  	github.com/Sharvil2704/rhobound-mcp/e2e/imagetar	0.003s	coverage: 35.4% of statements
+	github.com/Sharvil2704/rhobound-mcp/e2e/loadgen		coverage: 0.0% of statements
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/infer	32.772s	coverage: 96.7% of statements
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/mathx	6.728s	coverage: 99.0% of statements
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/model	0.074s	coverage: 92.1% of statements
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/otlp	0.006s	coverage: 91.3% of statements
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/report	0.002s	coverage: 60.6% of statements
+ok  	github.com/Sharvil2704/rhobound-mcp/validation/cluster/otel/otelcap	0.031s	coverage: 79.9% of statements
 ```
 
 (`internal/report` is exercised mostly by the CLI tests in `cmd/rhobound`; `report_test.go` covers the "hop from the mean" line. The demo services
@@ -234,16 +234,16 @@ programs, are run by `go run ./e2e/imagetar` and by the cluster scripts.)
 
 ```
 $ go test -race -count=1 -timeout 30m ./...
-ok  	github.com/Sharvil2704/rhobound-cli/cmd/rhobound	11.893s
-?   	github.com/Sharvil2704/rhobound-cli/e2e/demoapp	[no test files]
-ok  	github.com/Sharvil2704/rhobound-cli/e2e/imagetar	1.007s
-?   	github.com/Sharvil2704/rhobound-cli/e2e/loadgen	[no test files]
-ok  	github.com/Sharvil2704/rhobound-cli/internal/infer	326.919s
-ok  	github.com/Sharvil2704/rhobound-cli/internal/mathx	17.127s
-ok  	github.com/Sharvil2704/rhobound-cli/internal/model	1.353s
-ok  	github.com/Sharvil2704/rhobound-cli/internal/otlp	1.016s
-ok  	github.com/Sharvil2704/rhobound-cli/internal/report	1.008s
-ok  	github.com/Sharvil2704/rhobound-cli/validation/cluster/otel/otelcap	1.357s
+ok  	github.com/Sharvil2704/rhobound-mcp/cmd/rhobound	11.893s
+?   	github.com/Sharvil2704/rhobound-mcp/e2e/demoapp	[no test files]
+ok  	github.com/Sharvil2704/rhobound-mcp/e2e/imagetar	1.007s
+?   	github.com/Sharvil2704/rhobound-mcp/e2e/loadgen	[no test files]
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/infer	326.919s
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/mathx	17.127s
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/model	1.353s
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/otlp	1.016s
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/report	1.008s
+ok  	github.com/Sharvil2704/rhobound-mcp/validation/cluster/otel/otelcap	1.357s
 ```
 
 It took 5 minutes 27 seconds in all; `internal/infer` is about ten times slower under the race detector than without it. Go's default limit
@@ -269,7 +269,7 @@ $ go test -tags accuracy -count=1 -run TestHarnessPlumbing -v ./internal/infer
 === RUN   TestHarnessPlumbing
 --- PASS: TestHarnessPlumbing (0.47s)
 PASS
-ok  	github.com/Sharvil2704/rhobound-cli/internal/infer	0.469s
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/infer	0.469s
 ```
 
 ```
@@ -289,7 +289,7 @@ GLUE   spans include the wait false a S 11.91 glue 3.00 cap 1 | L 106.25 (+1.1%)
 GLUE   spans include the wait true  a S 11.91 glue 3.00 cap 1 | L 106.25 (+1.1%) dL 27.49 (+2.1% of dL, +0.55% of L)
 --- PASS: TestGlueEndToEnd (1.55s)
 PASS
-ok  	github.com/Sharvil2704/rhobound-cli/internal/infer	1.552s
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/infer	1.552s
 ```
 
 Each `GLUE` row compares the truth of a simulation with the model, first given the true parameters, then given what
@@ -316,7 +316,7 @@ $ go test -tags e2e -count=1 -run TestLoopbackSmoke -v ./e2e
     --- PASS: TestLoopbackSmoke/keepalive=false (17.47s)
     --- PASS: TestLoopbackSmoke/keepalive=true (15.48s)
 PASS
-ok  	github.com/Sharvil2704/rhobound-cli/e2e	33.739s
+ok  	github.com/Sharvil2704/rhobound-mcp/e2e	33.739s
 ```
 
 It is a plumbing check, with only about 15 s of load: its numbers are noisy and it is not an accuracy test. The
@@ -343,7 +343,7 @@ $ go test -tags e2e -count=1 -run TestClusterEndToEnd -v ./e2e
     e2e_test.go:1291: set RHOBOUND_E2E=1 (needs docker, kind and kubectl; or kubectl and RHOBOUND_E2E_KUBECONFIG)
 --- SKIP: TestClusterEndToEnd (0.00s)
 PASS
-ok  	github.com/Sharvil2704/rhobound-cli/e2e	0.002s
+ok  	github.com/Sharvil2704/rhobound-mcp/e2e	0.002s
 ```
 
 Its settings are environment variables, described at the top of `e2e/e2e_test.go`:
@@ -448,9 +448,9 @@ shortened here):
 
 ```
 $ go test ./e2e
-# github.com/Sharvil2704/rhobound-cli/e2e
-package github.com/Sharvil2704/rhobound-cli/e2e: build constraints exclude all Go files in .../e2e
-FAIL	github.com/Sharvil2704/rhobound-cli/e2e [setup failed]
+# github.com/Sharvil2704/rhobound-mcp/e2e
+package github.com/Sharvil2704/rhobound-mcp/e2e: build constraints exclude all Go files in .../e2e
+FAIL	github.com/Sharvil2704/rhobound-mcp/e2e [setup failed]
 FAIL
 ```
 
@@ -462,7 +462,7 @@ Add `-tags e2e`.
 $ go test -count=1 -run 'TestAccuracy$' -v ./internal/infer
 testing: warning: no tests to run
 PASS
-ok  	github.com/Sharvil2704/rhobound-cli/internal/infer	0.001s [no tests to run]
+ok  	github.com/Sharvil2704/rhobound-mcp/internal/infer	0.001s [no tests to run]
 ```
 
 Add `-tags accuracy`. For several studies at once also add `-timeout 60m`: by default `go test` stops a test binary

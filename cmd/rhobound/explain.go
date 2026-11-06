@@ -10,11 +10,11 @@ import (
 	"os"
 	"strings"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/abdiff"
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/fit"
-	"github.com/Sharvil2704/rhobound-cli/internal/report"
-	"github.com/Sharvil2704/rhobound-cli/internal/views"
+	"github.com/Sharvil2704/rhobound-mcp/internal/abdiff"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/fit"
+	"github.com/Sharvil2704/rhobound-mcp/internal/report"
+	"github.com/Sharvil2704/rhobound-mcp/internal/views"
 )
 
 func init() {

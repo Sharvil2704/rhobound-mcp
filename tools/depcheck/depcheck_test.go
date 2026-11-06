@@ -10,10 +10,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/testgen"
+	"github.com/Sharvil2704/rhobound-mcp/internal/testgen"
 )
 
-const module = "github.com/Sharvil2704/rhobound-cli"
+const module = "github.com/Sharvil2704/rhobound-mcp"
 
 func goTool() string {
 	if p, err := exec.LookPath("go"); err == nil {

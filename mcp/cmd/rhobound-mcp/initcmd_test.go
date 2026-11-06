@@ -17,7 +17,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/config"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/config"
 )
 
 // initBed is a home folder with an engine, a server binary, a capture and a policy.

@@ -8,7 +8,7 @@ import (
 	"math/bits"
 	"sync"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/mathx"
+	"github.com/Sharvil2704/rhobound-mcp/internal/mathx"
 )
 
 // The M^X/G/c queue of a callee that receives batches (batch.go says where they come from). Batch epochs are Poisson

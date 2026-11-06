@@ -18,7 +18,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/state"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/state"
 )
 
 // museBed is a user with the server registered in Muse's settings and a repository that may opt in: a home folder

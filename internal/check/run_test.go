@@ -13,10 +13,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/check"
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
-	"github.com/Sharvil2704/rhobound-cli/internal/testgen"
+	"github.com/Sharvil2704/rhobound-mcp/internal/check"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/testgen"
 )
 
 func fixture(t *testing.T, code string) *testgen.Fixture {

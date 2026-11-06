@@ -25,8 +25,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/objstore"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/registry"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/objstore"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/registry"
 )
 
 var update = flag.Bool("update", false, "rewrite the golden files under testdata/")

@@ -12,9 +12,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/abdiff"
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/report"
+	"github.com/Sharvil2704/rhobound-mcp/internal/abdiff"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/report"
 )
 
 // withRefusal adapts a command whose refusals carry codes: the error is printed as "rhobound: <error>" and the exit

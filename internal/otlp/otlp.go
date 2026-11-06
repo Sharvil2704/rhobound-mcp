@@ -24,7 +24,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
 )
 
 // Span kinds (OTLP SpanKind values).

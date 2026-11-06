@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
 )
 
 // TestUnevenReplicaSplit: b's two pods take 75% and 25% of its visits, as keep-alive connections behind a

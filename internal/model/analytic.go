@@ -7,7 +7,7 @@ import (
 	"math"
 	"slices"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/mathx"
+	"github.com/Sharvil2704/rhobound-mcp/internal/mathx"
 )
 
 // Config selects the refinements of the basic model. The basic model treats

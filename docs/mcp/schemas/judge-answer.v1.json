@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/judge-answer.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/judge-answer.v1.json",
   "title": "rhobound-mcp.judge-answer/v1",
   "description": "What a judge returns (ARCHITECTURE.md 7.2), checked by `rhobound judge-check ANSWER.json --packet PACKET.json --json`. The schema is the shape only: judge-check refuses with judge.ms_forbidden (a millisecond figure anywhere in a typed field, an own_ms or glue_ms op included), judge.loosening, judge.packet_mismatch, judge.evidence_unresolved and judge.answer_outside_question. Only decision, reasons[].code, assumptions, expected_ops and measure return to the coding agent; commentary goes to humans, wrapped as untrusted.",
   "type": "object",

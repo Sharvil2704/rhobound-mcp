@@ -9,10 +9,10 @@ import (
 	"path/filepath"
 	"unicode/utf8"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/change"
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/infer"
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/change"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/infer"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 // Refusal is a coded refusal (defs.v1 Refusal; docs/mcp/ARCHITECTURE.md 5.8): what a command prints in place of its

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/job-status.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/job-status.v1.json",
   "title": "rhobound-mcp job_status",
   "description": "The `job_status` tool (ARCHITECTURE.md 5.5). Server only (the CLI is synchronous). States are named as in the MCP Tasks extension. A job past its deadline_at reports failed with job.timeout, even if its worker died without writing anything. The root validates the output; $defs/input is the input schema.",
   "$ref": "#/$defs/output",

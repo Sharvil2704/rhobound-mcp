@@ -5,7 +5,7 @@ package model
 import (
 	"math"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/mathx"
+	"github.com/Sharvil2704/rhobound-mcp/internal/mathx"
 )
 
 // Batch arrivals. A parallel node that calls one child k >= 2 times sends that child a batch: k calls that arrive

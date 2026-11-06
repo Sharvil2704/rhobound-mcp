@@ -22,13 +22,13 @@ import (
 )
 
 // Base is the URI prefix of every published schema's $id.
-const Base = "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/"
+const Base = "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/"
 
 // Draft is the JSON Schema dialect every published schema declares.
 const Draft = "https://json-schema.org/draft/2020-12/schema"
 
 // RootModule is the module path of the repository's root module (the CLI).
-const RootModule = "github.com/Sharvil2704/rhobound-cli"
+const RootModule = "github.com/Sharvil2704/rhobound-mcp"
 
 // Set is the folder of schemas, loaded.
 type Set struct {

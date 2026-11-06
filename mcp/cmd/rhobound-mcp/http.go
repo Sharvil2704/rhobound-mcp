@@ -18,8 +18,8 @@ import (
 	sdkauth "github.com/modelcontextprotocol/go-sdk/auth"
 	"github.com/modelcontextprotocol/go-sdk/oauthex"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/auth"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/server"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/auth"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/server"
 )
 
 func init() { register("http", runHTTP) }

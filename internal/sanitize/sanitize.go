@@ -29,7 +29,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
 )
 
 // ExternalPrefix is the prefix of the model's nodes for peers that are not services of the capture (ext:<peer>).

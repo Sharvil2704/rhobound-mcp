@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/report.v2.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/report.v2.json",
   "title": "rhobound-cli.report/v2",
   "description": "The report of `rhobound predict --fit F (--changes C | --patch P) --json` (ARCHITECTURE.md 4.1-4.8), written by the pure engine. Additive over report v1: every v1 key keeps its name, type and meaning, and `capture` is the capture name stored in the fit. The v1 projection (`--report v1`) removes every key that report.v1's base does not define, at the top level and in each service row, and sets `version` to rhobound-cli.report/v1. The report holds no policy: thresholds, verdicts and the policy's band fractions are the gate's (gate.v1).",
   "allOf": [{"$ref": "report.v1.json#/$defs/base"}],

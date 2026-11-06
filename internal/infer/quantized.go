@@ -37,7 +37,7 @@ package infer
 import (
 	"math"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 const (

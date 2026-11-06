@@ -12,7 +12,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 // lostKey names calls: the service (an index into every service name, nameOf) that made them and the address

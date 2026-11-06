@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/fit"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/fit"
 )
 
 // gammaHalf is n own times from a gamma of shape 1/2 (cs2 2) with the mean m: m Z^2 for a standard normal Z.

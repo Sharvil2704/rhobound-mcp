@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/capture-manifest.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/capture-manifest.v1.json",
   "title": "rhobound.capture-manifest/v1",
   "description": "The capture manifest (DATA.md 4.5): the files of one capture with their sha256, the window and how it was cut, and where the data came from. The capture's identity is the sha256 of the canonical manifest. It names no bucket: the prefix is in server configuration and only its digest is recorded. A fetcher writes a preliminary manifest; `check --cut` writes the final one. A manifest written for a local folder has source kind dir and no S3 fields.",
   "type": "object",

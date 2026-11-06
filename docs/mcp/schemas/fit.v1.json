@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/fit.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/fit.v1.json",
   "title": "rhobound.fit/v1",
   "description": "The fit record `rhobound fit` writes (ARCHITECTURE.md 4.1). This schema fixes the summary fields other components read (the server's fit age, baseline pointer and job results; the gate's fit checks). The rest of the record is the engine's lossless mirror of the inference (topology, per-service statistics with their lower-bound flags, observed values) and is open here: it is read only by the CLI that wrote it, so the object allows other keys. The record is canonical JSON; its id is the sha256 of those bytes. Floats that may be non-finite use defs Float.",
   "type": "object",

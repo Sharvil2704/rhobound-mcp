@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/explain.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/explain.v1.json",
   "title": "rhobound-mcp.explain/v1",
   "description": "The `explain` tool (ARCHITECTURE.md 5.5): drill-down for clients that support tools only. The root validates the view `rhobound explain --target FILE --section S --json` prints; content is open (the section's structured content, sanitized like every other result). The judge_packet section holds the same object as `rhobound judge-packet`. $defs/input is the tool's input schema.",
   "$ref": "#/$defs/output",

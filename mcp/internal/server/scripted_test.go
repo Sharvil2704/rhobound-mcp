@@ -19,8 +19,8 @@ import (
 	"github.com/modelcontextprotocol/go-sdk/jsonrpc"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/server/schemas"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/state"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/server/schemas"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/state"
 )
 
 // tool calls a tool and returns the result's text body (the exact bytes), its structuredContent as the client decoded

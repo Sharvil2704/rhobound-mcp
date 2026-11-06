@@ -3,9 +3,9 @@
 package views
 
 import (
-	"github.com/Sharvil2704/rhobound-cli/internal/budget"
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/gate"
+	"github.com/Sharvil2704/rhobound-mcp/internal/budget"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/gate"
 )
 
 // BudgetInput is what the budget view is built from: the items budget.Compute returned, ranked by leverage, whether

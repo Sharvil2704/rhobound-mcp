@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/abdiff"
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
-	"github.com/Sharvil2704/rhobound-cli/internal/testgen"
+	"github.com/Sharvil2704/rhobound-mcp/internal/abdiff"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/testgen"
 )
 
 // The scripted agent's fixture (testdata/mcp/loop; docs/mcp/EVALUATION.md and the README there): the base capture with

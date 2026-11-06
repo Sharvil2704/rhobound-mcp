@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/ab-record.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/ab-record.v1.json",
   "title": "rhobound.ab-record/v1",
   "description": "What `rhobound diff-fit --baseline A --candidate B --loadgen-log L` writes (DATA.md 8): per service, the difference between the two arms of a concurrent A/B run, with standard errors by batch means, and the checks that decide whether the own-time difference may be applied alone. Only the CLI or server that computed a record mints measured-ab from it; a measured item enters a change set as delta +-2 standard errors.",
   "type": "object",

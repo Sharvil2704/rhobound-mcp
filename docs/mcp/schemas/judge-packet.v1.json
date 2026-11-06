@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/judge-packet.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/judge-packet.v1.json",
   "title": "rhobound-mcp.judge-packet/v1",
   "description": "What the judge receives (ARCHITECTURE.md 7.1), from `rhobound judge-packet PREDICTION.json --json` or `explain` with section judge_packet (the same bytes). Canonical JSON (sorted keys), sanitized, at most about 4,000 tokens. A judge answer cites the sha256 of these canonical bytes as its packet.",
   "type": "object",

@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/objstore"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/objstore"
 )
 
 // The suffixes the reader parses (DATA.md 3.2). Every other object is refused by name.

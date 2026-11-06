@@ -11,13 +11,13 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/abdiff"
-	"github.com/Sharvil2704/rhobound-cli/internal/change"
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/fit"
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
-	"github.com/Sharvil2704/rhobound-cli/internal/report"
-	"github.com/Sharvil2704/rhobound-cli/internal/testgen"
+	"github.com/Sharvil2704/rhobound-mcp/internal/abdiff"
+	"github.com/Sharvil2704/rhobound-mcp/internal/change"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/fit"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/report"
+	"github.com/Sharvil2704/rhobound-mcp/internal/testgen"
 )
 
 // addOwnTime adds d ns of own time to every visit of svc before its first call (testgen.AddOwnTime).

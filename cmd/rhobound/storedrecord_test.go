@@ -15,7 +15,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
 )
 
 // plantOne decodes a record, applies edit to it, and writes it to a file of its own in the form the engine writes a

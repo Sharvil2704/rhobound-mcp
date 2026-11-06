@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 	"sort"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/config"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/config"
 )
 
 // Definitions is all the text of this server that a model reads, as one canonical JSON document: for each profile,

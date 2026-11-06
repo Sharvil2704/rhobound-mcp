@@ -21,7 +21,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
 )
 
 // MaxSkew is how far outside the window a dump may have been taken [D] (cluster.window_mismatch).

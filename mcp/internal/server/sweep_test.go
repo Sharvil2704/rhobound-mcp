@@ -20,11 +20,11 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/auth"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/config"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/ratelimit"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/runner"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/state"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/auth"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/config"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/ratelimit"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/runner"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/state"
 )
 
 // TestServerFoldersNeverLeak: no location of the server reaches a caller. Two servers' captures, policies,

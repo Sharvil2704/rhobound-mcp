@@ -15,7 +15,7 @@ this folder: after editing one of those files here, copy it there.
 ## Conventions
 
 - JSON Schema 2020-12. Every file has an `$id` under
-  `https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/` and refers to the others by
+  `https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/` and refers to the others by
   relative path, so a validator that loads the whole folder resolves every `$ref` without the network.
 - `defs.v1.json` holds the shared definitions of ARCHITECTURE.md 5.4 (`Handle`, `Name`, `Route`, `Code`, `Env`,
   `Range`, `Value`, `ChangeItem`, `MeasuredRef`, `Finding`, `Assumption`, `Refusal`) and the ones the other files add

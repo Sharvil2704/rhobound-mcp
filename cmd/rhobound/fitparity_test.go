@@ -15,11 +15,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/fit"
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
-	"github.com/Sharvil2704/rhobound-cli/internal/report"
-	"github.com/Sharvil2704/rhobound-cli/internal/testgen"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/fit"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/report"
+	"github.com/Sharvil2704/rhobound-mcp/internal/testgen"
 )
 
 // inRepoRoot runs the test from the repository root, where the captures' names are those the reports print. No test

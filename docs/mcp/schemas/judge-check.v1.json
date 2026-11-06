@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/judge-check.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/judge-check.v1.json",
   "title": "rhobound judge-check output",
   "description": "What `rhobound judge-check ANSWER.json --packet PACKET.json --json` prints when an answer passes (ARCHITECTURE.md 7.2): only the typed fields that may return to the coding agent (the decision, the reason codes, the structural assumptions, the expected operations without their notes, the measurements asked for), the digests of the packet and of the answer, and the answer's provenance. The commentary never appears here. A refused answer prints refusal.v1 instead (exit 1); a document that is not a judge answer is a tool error (exit 2).",
   "type": "object",

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/fit-start.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/fit-start.v1.json",
   "title": "rhobound-mcp fit_start",
   "description": "The `fit_start` tool (ARCHITECTURE.md 5.5): a fresh fit, or an A/B difference, as a job. Server only: it has no CLI twin of the same shape (the job runs `rhobound check` and `rhobound fit`, or `rhobound diff-fit`). Capture names map to locations in server configuration; a tool argument never carries a bucket, a prefix or a path, and on AWS the top-level capture argument is refused. The root validates the output; $defs/input is the input schema.",
   "$ref": "#/$defs/output",

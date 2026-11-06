@@ -29,7 +29,7 @@ func repoRoot(t *testing.T) string {
 		if b, err := os.ReadFile(filepath.Join(dir, "go.mod")); err == nil {
 			sc := bufio.NewScanner(bytes.NewReader(b))
 			for sc.Scan() {
-				if f := strings.Fields(sc.Text()); len(f) == 2 && f[0] == "module" && f[1] == "github.com/Sharvil2704/rhobound-cli" {
+				if f := strings.Fields(sc.Text()); len(f) == 2 && f[0] == "module" && f[1] == "github.com/Sharvil2704/rhobound-mcp" {
 					return dir
 				}
 			}

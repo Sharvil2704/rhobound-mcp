@@ -6,9 +6,9 @@ import (
 	"math"
 	"strings"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/change"
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
-	"github.com/Sharvil2704/rhobound-cli/internal/report"
+	"github.com/Sharvil2704/rhobound-mcp/internal/change"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/report"
 )
 
 // The documented sizes of the biased constructs (docs/ACCURACY.md section 1; docs/VALIDATION.md), the largest seen in

@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/registry"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/registry"
 )
 
 // The codes the fetcher raises, from the one registry (DATA.md 3.14). The empty window has no store code of its

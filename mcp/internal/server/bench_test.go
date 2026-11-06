@@ -10,7 +10,7 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/config"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/config"
 )
 
 // serverJobWords are the words that send an agent to a tool the bench profile does not have.

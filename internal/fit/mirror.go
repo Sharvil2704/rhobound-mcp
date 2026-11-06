@@ -8,8 +8,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/infer"
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/infer"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
 )
 
 // The mirror of an inference: every field of infer.Inferred, its topology and its statistics, written so that reading

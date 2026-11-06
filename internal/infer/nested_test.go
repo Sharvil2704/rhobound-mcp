@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 // ns builds a span for the merge tests. res 0 and 1 are two pods of one service, 2 another service.

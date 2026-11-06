@@ -10,7 +10,7 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 // The fixtures in testdata/nested are whole traces of the OpenTelemetry Demo 2.2.0 (about 25 services in many

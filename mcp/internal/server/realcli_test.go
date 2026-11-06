@@ -18,17 +18,17 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/auth"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/config"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/runner"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/state"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/auth"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/config"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/runner"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/state"
 )
 
 // The tests in this file and in scripted_test.go run the real rhobound CLI, built from this repository once per test
 // binary (the first test that needs it builds it; TestMain removes it). The repository root is the first folder above
 // this one whose go.mod declares the CLI's module.
 
-const cliModule = "github.com/Sharvil2704/rhobound-cli"
+const cliModule = "github.com/Sharvil2704/rhobound-mcp"
 
 var real struct {
 	once sync.Once

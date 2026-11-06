@@ -15,9 +15,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/apigw"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/auth"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/lambdart"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/apigw"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/auth"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/lambdart"
 )
 
 // lambdaRuntime is a Lambda Runtime API serving one event, recording what the function posts.

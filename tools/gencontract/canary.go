@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"path/filepath"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/testgen"
+	"github.com/Sharvil2704/rhobound-mcp/internal/testgen"
 )
 
 // CanaryTable is the file Canaries writes beside the captures: what each capture planted.

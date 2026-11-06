@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/state"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/state"
 )
 
 // What the server keeps is bounded: the derived documents it remembers (lru), the explain sections with no target

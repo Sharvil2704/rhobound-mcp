@@ -1,4 +1,4 @@
-module github.com/Sharvil2704/rhobound-cli/mcp
+module github.com/Sharvil2704/rhobound-mcp/mcp
 
 go 1.25.0
 

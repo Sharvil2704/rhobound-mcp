@@ -10,9 +10,9 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/apigw"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/auth"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/lambdart"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/apigw"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/auth"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/lambdart"
 )
 
 // Lambda mode (DEPLOY_AWS.md 2.2): the MCP server's HTTP handler behind API Gateway, served by the Lambda Runtime

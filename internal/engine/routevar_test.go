@@ -6,8 +6,8 @@ import (
 	"math"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/infer"
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/infer"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
 )
 
 // TestRoutePatchTakesTheMeasuredVariance: a routed service that an own_var_ms2 item also changes takes the measured

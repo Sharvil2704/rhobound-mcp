@@ -7,7 +7,7 @@ import (
 	"math"
 	"slices"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
 )
 
 const (

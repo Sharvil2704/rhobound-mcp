@@ -13,10 +13,10 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/jsonrpc"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/config"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/runner"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/server/schemas"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/state"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/config"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/runner"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/server/schemas"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/state"
 )
 
 // refusalOK checks that b is a refusal result with code, valid against the published Refusal definition, and returns

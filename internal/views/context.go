@@ -5,10 +5,10 @@ package views
 import (
 	"strconv"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/budget"
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/gate"
-	"github.com/Sharvil2704/rhobound-cli/internal/report"
+	"github.com/Sharvil2704/rhobound-mcp/internal/budget"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/gate"
+	"github.com/Sharvil2704/rhobound-mcp/internal/report"
 )
 
 // The most rows of the context view (context.v1).

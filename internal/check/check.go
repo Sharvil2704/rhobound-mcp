@@ -21,8 +21,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 // PodIdentityHost is the --pod-identity value that keys the pods of resources with no platform identity by host.name:

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/request-count.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/request-count.v1.json",
   "title": "rhobound.request-count/v1",
   "description": "An independent count of entry requests for the capture's window (DATA.md 6), from a source outside the trace pipeline. Refused: count.window_mismatch (window edges more than 10 s from the capture's), count.unknown_entry. appsignals is accepted only as unverified.",
   "type": "object",

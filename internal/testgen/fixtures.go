@@ -14,8 +14,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 // The stages a fixture's defect is raised at: by `rhobound check` (StageCheck), by the inference when a capture is

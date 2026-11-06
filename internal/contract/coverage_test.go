@@ -15,9 +15,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
-	"github.com/Sharvil2704/rhobound-cli/internal/testgen"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/testgen"
 )
 
 // Every code gets its test, from the one registry (DATA.md 17, 19):
@@ -181,7 +181,7 @@ func codeConstants(t *testing.T, path string) map[string]string {
 // contractImportName is the name a file imports this package under ("" when it does not).
 func contractImportName(f *ast.File) string {
 	for _, imp := range f.Imports {
-		if p, _ := strconv.Unquote(imp.Path.Value); p == "github.com/Sharvil2704/rhobound-cli/internal/contract" {
+		if p, _ := strconv.Unquote(imp.Path.Value); p == "github.com/Sharvil2704/rhobound-mcp/internal/contract" {
 			if imp.Name != nil {
 				return imp.Name.Name
 			}

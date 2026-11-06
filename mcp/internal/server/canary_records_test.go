@@ -18,8 +18,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/registry"
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/state"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/registry"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/state"
 )
 
 // plantAddress is the address in every token a planter writes: a string with a space and an address, which the name

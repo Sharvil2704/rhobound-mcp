@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
-	"github.com/Sharvil2704/rhobound-cli/internal/sanitize"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/sanitize"
 )
 
 // ShownWorkers returns workers with each service named as the traces wrote it: a name the views show for one of the

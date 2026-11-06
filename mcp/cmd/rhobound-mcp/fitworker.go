@@ -7,7 +7,7 @@ import (
 	"errors"
 	"os"
 
-	"github.com/Sharvil2704/rhobound-cli/mcp/internal/lambdart"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/lambdart"
 )
 
 // The fit worker (DEPLOY_AWS.md 2.3): a Lambda function invoked asynchronously, with no retries, by the MCP

@@ -24,7 +24,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
 )
 
 // goldenCase is one run of the sweep: the arguments (the capture as a path from the repository root, which the

@@ -8,7 +8,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
 )
 
 // nodeLike makes n visits of A (60 ms apart, nothing queues) that call B twice, one after the other (seq) or together, with a

@@ -10,8 +10,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/change"
-	"github.com/Sharvil2704/rhobound-cli/internal/report"
+	"github.com/Sharvil2704/rhobound-mcp/internal/change"
+	"github.com/Sharvil2704/rhobound-mcp/internal/report"
 )
 
 // GR-1: chain fixture with b raised (identified workers) and a second measured-ab item that IMPROVES c, whose workers

@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	mcpModule = "github.com/Sharvil2704/rhobound-cli/mcp"
+	mcpModule = "github.com/Sharvil2704/rhobound-mcp/mcp"
 	sdk       = "github.com/modelcontextprotocol/go-sdk"
 )
 

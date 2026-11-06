@@ -8,7 +8,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
 )
 
 // Per-route own time. One service can serve routes of very different cost (a cheap /item and a dear /search), each

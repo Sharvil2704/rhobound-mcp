@@ -6,7 +6,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 // The changes the A/B pairs of the variance test inject into b's own time per visit (DATA.md 8; testdata/mcp/loop).

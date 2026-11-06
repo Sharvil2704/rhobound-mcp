@@ -15,8 +15,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/check"
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/check"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
 )
 
 // The exit statuses of check, its own (DATA.md 3.2): a data refusal is never 1, which the gate uses for block.

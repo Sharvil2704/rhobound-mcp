@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/check.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/check.v1.json",
   "title": "rhobound.check/v1",
   "description": "What `rhobound check --json` prints: the data contract's verdict on one capture (DATA.md 3.14, 17, 19). Exit status 0 admitted (doubts listed), 4 refused, 2 tool error. With `--cut` and `--request-count F`, it is the verdict on the cut, checked with the count (DATA.md 6): `manifest_sha256` is the cut's manifest as that check completed it, and `ignored` is the read's, before the cut.",
   "type": "object",

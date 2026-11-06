@@ -19,8 +19,8 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/model"
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/model"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 // The accuracy harness's plumbing: seeds, the truth, the noise a capture carries, and the recorder.

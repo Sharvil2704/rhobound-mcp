@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/refusal.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/refusal.v1.json",
   "title": "rhobound CLI refusal",
   "description": "What a CLI command prints on standard output with --json when it refuses (bad data, out of scope, an unknown service, an unsupported operation), exit status 1 as for predict, infer and model today (ARCHITECTURE.md 5.8). The server returns the same Refusal object in a tool result with isError: true. The code is a fixed token from the registry; anything derived from data is in the sanitized subject.",
   "type": "object",

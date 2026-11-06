@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/otlp"
+	"github.com/Sharvil2704/rhobound-mcp/internal/otlp"
 )
 
 // The canary captures of the MCP server's leak sweep (mcp/internal/server, TestServerCanariesNeverLeak): copies of the

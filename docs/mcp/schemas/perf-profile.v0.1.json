@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/perf-profile.v0.1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/perf-profile.v0.1.json",
   "title": "perf-profile/v0.1 statement",
   "description": "An in-toto Statement v1 carrying an image performance profile (DATA.md 9.2) [later; the first build parses and checks it, and refuses every signature]. The schema states the field rules a schema can: variance (own_cs2, own_cs2_se) and structure (calls) required per arm and level, the outside measurement (client_latency_ms, cpu_ms_per_visit) required, statistic mean. Rules it cannot state are checked by the parser and the verifier (DATA.md 9.2, 9.5): no storage locations, account ids or cluster ARNs anywhere in the predicate, media types without parameters, subject and baseline bindings, freshness, hardware match.",
   "type": "object",

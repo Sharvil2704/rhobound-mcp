@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/mathx"
+	"github.com/Sharvil2704/rhobound-mcp/internal/mathx"
 )
 
 // supMomentsRef is supMomentsOf as it was up to 2bd68056: one convolution per worker at every node, over every panel

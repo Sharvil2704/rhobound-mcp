@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/run-record.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/run-record.v1.json",
   "title": "rhobound.run-record/v1",
   "description": "One trial of an evaluation study (EVALUATION.md 5). Every group is required: a record with a missing field counts as a failure of its arm, never as excluded. Predictions are registered in the ledger before the after-capture is opened.",
   "type": "object",

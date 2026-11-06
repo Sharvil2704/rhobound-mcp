@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/gate.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/gate.v1.json",
   "title": "rhobound.gate/v1",
   "description": "gate.json, the machine record `rhobound gate PREDICTION.json --policy P [--readiness R] [--now T] --out DIR` writes beside verdict.txt and summary.md (ARCHITECTURE.md 6.1-6.6). PREDICTION.json is a report v2, or a refusal (refusal.v1), which rule 1 turns into inconclusive. Exit status: 0 pass, 1 block, 3 inconclusive, 2 when the tool cannot run. Each of the 13 rules is listed in order, evaluated or not.",
   "type": "object",

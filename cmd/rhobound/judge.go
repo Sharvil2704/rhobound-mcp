@@ -11,13 +11,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/budget"
-	"github.com/Sharvil2704/rhobound-cli/internal/change"
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/gate"
-	"github.com/Sharvil2704/rhobound-cli/internal/judge"
-	"github.com/Sharvil2704/rhobound-cli/internal/report"
-	"github.com/Sharvil2704/rhobound-cli/internal/views"
+	"github.com/Sharvil2704/rhobound-mcp/internal/budget"
+	"github.com/Sharvil2704/rhobound-mcp/internal/change"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/gate"
+	"github.com/Sharvil2704/rhobound-mcp/internal/judge"
+	"github.com/Sharvil2704/rhobound-mcp/internal/report"
+	"github.com/Sharvil2704/rhobound-mcp/internal/views"
 )
 
 func init() {

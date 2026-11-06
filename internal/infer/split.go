@@ -17,7 +17,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/mathx"
+	"github.com/Sharvil2704/rhobound-mcp/internal/mathx"
 )
 
 // PodShare is one pod's share of its service's visits.

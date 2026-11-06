@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/data-contract.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/data-contract.v1.json",
   "title": "rhobound.data-contract/v1",
   "description": "The data contract's registry as one document, docs/mcp/data-contract.json: every registered code with its level, trigger, condition, fix, behaviour at 1a2df09 (codes a capture triggers), the section that defines it, the registry version that added it, its status and the names of the numbers its findings carry. Generated from the registry in internal/contract by tools/gencontract, with the code tables of DATA.md 3.14 and 19. The server's rhobound://data-contract resource is this document, canonical; `rhobound explain --section data_contract` carries a subset of each row (code, level, trigger, fix, status), cut to its max_chars.",
   "type": "object",

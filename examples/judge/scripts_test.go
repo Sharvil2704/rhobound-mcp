@@ -14,8 +14,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/testgen"
-	"github.com/Sharvil2704/rhobound-cli/internal/views"
+	"github.com/Sharvil2704/rhobound-mcp/internal/testgen"
+	"github.com/Sharvil2704/rhobound-mcp/internal/views"
 )
 
 var scripts = []string{"bedrock-converse.sh", "openai-compatible.sh"}

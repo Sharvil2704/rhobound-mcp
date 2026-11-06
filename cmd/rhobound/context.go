@@ -11,12 +11,12 @@ import (
 	"sort"
 	"time"
 
-	"github.com/Sharvil2704/rhobound-cli/internal/budget"
-	"github.com/Sharvil2704/rhobound-cli/internal/contract"
-	"github.com/Sharvil2704/rhobound-cli/internal/fit"
-	"github.com/Sharvil2704/rhobound-cli/internal/gate"
-	"github.com/Sharvil2704/rhobound-cli/internal/report"
-	"github.com/Sharvil2704/rhobound-cli/internal/views"
+	"github.com/Sharvil2704/rhobound-mcp/internal/budget"
+	"github.com/Sharvil2704/rhobound-mcp/internal/contract"
+	"github.com/Sharvil2704/rhobound-mcp/internal/fit"
+	"github.com/Sharvil2704/rhobound-mcp/internal/gate"
+	"github.com/Sharvil2704/rhobound-mcp/internal/report"
+	"github.com/Sharvil2704/rhobound-mcp/internal/views"
 )
 
 // The CLI twins of the MCP tools (context, budget, preview, explain) and the judge hand-off print canonical JSON

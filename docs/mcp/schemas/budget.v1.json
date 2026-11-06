@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-cli/main/docs/mcp/schemas/budget.v1.json",
+  "$id": "https://raw.githubusercontent.com/Sharvil2704/rhobound-mcp/main/docs/mcp/schemas/budget.v1.json",
   "title": "rhobound-mcp.budget/v1",
   "description": "The `budget` tool (ARCHITECTURE.md 4.7, 5.5): how much a service may add per visit. The root validates the view `rhobound budget --fit F [--service S] [--policy P] --json` prints (canonical JSON); the server adds only its own keys. $defs/input is the tool's input schema. max_value is the largest x with change(x) <= T at every entry; safe_value the largest x with change(x) + model band(x) <= T, both by bisection (at most 25 solves each), never x_max minus a band.",
   "$ref": "#/$defs/output",
