@@ -4,8 +4,12 @@
 
 rhobound is a deploy gate for coding agents and CI. A change goes in: code written by a person or by an agent such as
 Meta's Muse Code. rhobound measures the changed services side by side, off production. Then it predicts the mean
-latency of every user-facing request in the live system. The verdict comes out signed: **pass**, **block** or
-**inconclusive**. Production is deployed only on a signed pass.
+latency of every user-facing request in the live system. The verdict is **pass**, **block** or **inconclusive**: a
+pass means that the predicted change of mean latency, widened by the model's documented error, stays under the
+policy's threshold with every input checked. It says nothing about tail latency, and the engine records every verdict
+as advisory until an environment has earned enforcement
+([docs/mcp/ARCHITECTURE.md, 6.6](docs/mcp/ARCHITECTURE.md#66-from-advisory-to-enforcing)). On the AWS bed in this
+repository the verdict is signed, and production is deployed only on a signed pass.
 
 > **An extension of [rhobound-cli](https://github.com/Sharvil2704/rhobound-cli),** the open-source latency engine. This
 > repository adds:
@@ -24,7 +28,7 @@ latency of every user-facing request in the live system. The verdict comes out s
 |---|---|---|
 | **Engine** | Rebuilds the call graph and every service's queue from OpenTelemetry traces, then predicts mean latency before and after a change. | [cmd/](cmd/), [internal/](internal/) |
 | **Measurement** | An A/B of each changed image on its own node, off production, with the same traffic as the production image. | [bed/tools1/](bed/tools1/) |
-| **Gate** | GitHub Actions: build by digest, A/B, prediction, verdict signed with AWS KMS. Only a signed pass deploys. | [bed/repo/](bed/repo/README.md) |
+| **Gate** | The bed's GitHub Actions pipeline: build by digest, A/B, prediction, verdict signed with AWS KMS. On the bed, only a signed pass deploys. | [bed/repo/](bed/repo/README.md) |
 | **Agent side** | An MCP server with six tools, and a native Muse Code plugin. | [mcp/](mcp/), [integrations/muse-code/](integrations/muse-code/README.md) |
 | **Test bed** | Ten AWS machines running *maze*, a 32-service Go app built to stress the model. | [bed/](bed/README.md) |
 
@@ -32,24 +36,36 @@ latency of every user-facing request in the live system. The verdict comes out s
 
 | | built |
 |---|---|
-| **Before Oct 26** | **The engine:** a Go CLI that predicts mean latency from traces. Its median error on entry latency was 2.0% over 288 simulated scenarios. On Kubernetes it predicted 46.15 ms against 46.10 ms measured. |
+| **Before Oct 26** | **The engine:** a Go CLI that predicts mean latency from traces. Its median error on entry latency was 2.0% over 288 scenarios of our own simulator. On our own Kubernetes demo it predicted 46.15 ms against 46.10 ms measured ([docs/ACCURACY.md](docs/ACCURACY.md), failures first). |
 | Oct 26-27 | **The engine became a gate:** `fit` once and predict many times, `diff-fit` (an A/B as a measured change), `budget`, `gate`, and `judge-packet` for a second model. **The MCP server.** |
 | Oct 30-31 | **The first live AWS bed:** KMS-signed verdicts, images by digest. A change written by Meta's Muse Spark 1.3 through MCP passed it. |
 | Nov 1-2 | **maze** and cluster tests 2 and 3. In test 3 the gate made no wrong pass and no wrong block. **The Muse Code plugin.** |
 | Nov 3-4 | **The Muse Code experiments,** the deploy-time measurement, **multi-image changes with parallel A/Bs,** and the public release |
 
-## Results, measured on AWS
+## Results, measured on our own AWS bed
 
 Every prediction was committed before production was measured
-([docs/RESULTS.md](docs/RESULTS.md)).
+([docs/RESULTS.md](docs/RESULTS.md)). Every number below is from our own bed: *maze*, a synthetic 32-service app we
+built to stress the model, on one day, 17 verdicts in all. It is not a production system, no accuracy study of the
+gate has been run on software we did not write, and no production telemetry has been used. The engine predicts mean
+latency only.
 
 | | result |
 |---|---|
-| **Every verdict came true** | 8 passes, all measured clean; 2 blocks, both real regressions (+35 to +38 ms); no wrong pass |
+| **No wrong pass, no wrong block** | 8 passes, all measured clean; 2 blocks, both real regressions (+35 to +38 ms); 7 inconclusives, every one measured clean (false holds: five on a one-worker service, two on a three-image change at the 4-ms limit) |
 | **Stopped before users saw it** | A costly three-image change was blocked in 9.7 min, with the culprit named. A 5-min bake took 15.5 min to see it, while users ran +38 ms for 9 min. |
-| **Faster than a bake** | One image: 7.5 min against 15.4. Two images: 9.2 min against 15.5. |
+| **Faster than a bake** | One image: the gate took 7.5 to 8.0 min against a 15.4-min bake, about 7.5 min saved. Two images: 9.2 min against 15.5. |
 | **Parallel A/Bs** | Three A/Bs in 572 s instead of 1,400 |
 | **Predictions inside their bands** | 25 of 25 entries in the multi-image runs, and 34 of 35 in the deploy-time runs |
+
+## What ships, and what the bed shows
+
+| | what it is | status |
+|---|---|---|
+| The engine and its CLI ([cmd/](cmd/), [internal/](internal/)) | `predict` and `model`, and the gate commands `check`, `fit`, `budget`, `context`, `preview`, `gate`, `diff-fit`, `explain`, `judge-packet`, `judge-check` ([docs/USAGE.md](docs/USAGE.md)) | Built and tested; runs anywhere from a clone. Mean latency only. Every verdict advisory until an environment earns enforcement. |
+| The MCP server ([mcp/](mcp/)) and the Muse Code plugin ([integrations/muse-code/](integrations/muse-code/README.md)) | six tools over stdio or HTTP; three skills and two hooks | Built and tested; stdio, or one process over HTTP behind your own proxy. The AWS serving design in [docs/mcp/DEPLOY_AWS.md](docs/mcp/DEPLOY_AWS.md) (Lambda, S3 fetch, DynamoDB) is a design, not built. |
+| The measurement, the signing, deploy-on-pass and the refit ([bed/tools1/](bed/tools1/), [bed/repo/](bed/repo/README.md)) | the bed's scripts on one self-hosted runner, for maze and kshop | Built for the bed and run there. Demo-grade: not a reusable Action, chart or module; a team adopting the gate builds its own A/B and refit around the CLI. |
+| The evidence | the engine: our own simulator and our own clusters ([docs/ACCURACY.md](docs/ACCURACY.md)); the gate: the bed results above ([docs/RESULTS.md](docs/RESULTS.md)) | No study on software we did not write under load; no accuracy study of the gate; the gate is a hypothesis the bed supports at n = 17. |
 
 ## How Meta's models are used
 
