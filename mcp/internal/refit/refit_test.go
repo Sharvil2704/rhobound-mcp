@@ -338,13 +338,13 @@ func TestStoreForAndOptions(t *testing.T) {
 	if _, err := StoreFor(config.Env{Store: "s3", Prefix: "env=prod/", Bucket: "b"}); err == nil || !strings.Contains(err.Error(), "credentials") {
 		t.Errorf("s3 without credentials: %v", err)
 	}
-	t.Setenv("AWS_ACCESS_KEY_ID", "AKIAX")
+	t.Setenv("AWS_ACCESS_KEY_ID", "TESTACCESSKEYID")
 	t.Setenv("AWS_SECRET_ACCESS_KEY", "secret")
 	if _, err := StoreFor(config.Env{Store: "s3", Prefix: "env=prod/", Bucket: "b"}); err == nil || !strings.Contains(err.Error(), "region") {
 		t.Errorf("s3 without a region: %v", err)
 	}
 	t.Setenv("AWS_REGION", "eu-west-1")
-	if s, err := StoreFor(config.Env{Store: "s3", Prefix: "env=prod/", Bucket: "b"}); err != nil || s.(objstore.S3).Region != "eu-west-1" || s.(objstore.S3).Creds.AccessKey != "AKIAX" {
+	if s, err := StoreFor(config.Env{Store: "s3", Prefix: "env=prod/", Bucket: "b"}); err != nil || s.(objstore.S3).Region != "eu-west-1" || s.(objstore.S3).Creds.AccessKey != "TESTACCESSKEYID" {
 		t.Errorf("s3 from the environment: %v %v", s, err)
 	}
 	if s, err := StoreFor(config.Env{Store: "s3", Prefix: "p/", Bucket: "b", Region: "us-west-2", Endpoint: "http://127.0.0.1:1"}); err != nil || s.(objstore.S3).Endpoint != "http://127.0.0.1:1" {
@@ -365,7 +365,7 @@ func TestRunFromAnS3Store(t *testing.T) {
 	bin := realEngine(t)
 	root := t.TempDir()
 	layoutLoop(t, filepath.Join(root, "store"))
-	creds := objstore.Credentials{AccessKey: "AKIAFAKEFAKEFAKEFAKE", SecretKey: "fake-secret"}
+	creds := objstore.Credentials{AccessKey: "FAKEACCESSKEYFORDRYRUNS", SecretKey: "fake-secret"}
 	fake := &s3fake.Server{Bucket: "traces", Creds: creds, PageSize: 5}
 	if err := fake.Load(filepath.Join(root, "store")); err != nil {
 		t.Fatal(err)

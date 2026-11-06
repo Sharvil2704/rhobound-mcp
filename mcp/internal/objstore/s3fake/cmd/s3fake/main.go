@@ -22,7 +22,7 @@ func main() {
 	root := flag.String("root", "", "the folder served as the bucket (keys are paths under it)")
 	bucket := flag.String("bucket", "traces", "the bucket's name")
 	listen := flag.String("listen", "127.0.0.1:0", "the address to listen on (loopback only)")
-	access := flag.String("access-key", "AKIAFAKEFAKEFAKEFAKE", "the access key requests must be signed with")
+	access := flag.String("access-key", "FAKEACCESSKEYFORDRYRUNS", "the access key requests must be signed with")
 	secret := flag.String("secret-key", "fake-secret-key-for-dry-runs-only", "its secret")
 	page := flag.Int("page", 1000, "keys per listing page")
 	flag.Parse()

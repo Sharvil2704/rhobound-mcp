@@ -217,7 +217,7 @@ func TestEnvS3Fields(t *testing.T) {
 		`{"store":"s3","prefix":"p/"}`:                                                              "bucket",
 		`{"store":"s3","prefix":"p/","bucket":"Traces"}`:                                            "bucket",
 		`{"store":"s3","prefix":"p/","bucket":"traces","region":"US East"}`:                         "region",
-		`{"store":"s3","prefix":"p/","bucket":"traces","endpoint":"http://10.0.0.5:9000"}`:          "endpoint",
+		`{"store":"s3","prefix":"p/","bucket":"traces","endpoint":"http://198.51.100.5:9000"}`:      "endpoint",
 		`{"store":"s3","prefix":"p/","bucket":"traces","endpoint":"https://s3.example.com/bucket"}`: "endpoint",
 		`{"store":"dir","root":"/data","bucket":"traces"}`:                                          "dir store",
 	} {

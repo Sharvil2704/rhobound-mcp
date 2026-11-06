@@ -18,7 +18,7 @@ import (
 // albLine is one ALB access log entry: the 13th field is the quoted request, the 22nd the request creation time.
 func albLine(created time.Time, method, url string) string {
 	resp := created.Add(12 * time.Millisecond)
-	return fmt.Sprintf(`http %s app/web/50dc6c495c0c9188 203.0.113.9:2817 10.0.0.1:80 0.000 0.001 0.000 200 200 34 366 "%s %s HTTP/1.1" "curl/7.46.0" - - arn:aws:elasticloadbalancing:us-east-1:000000000000:targetgroup/web/73e2d6bc24d8a067 "Root=1-58337262-36d228ad5d99923122bbe354" "www.example.com" "-" 0 %s "forward" "-" "-" "10.0.0.1:80" "200" "-" "-" TID_0`,
+	return fmt.Sprintf(`http %s app/web/50dc6c495c0c9188 203.0.113.9:2817 198.51.100.1:80 0.000 0.001 0.000 200 200 34 366 "%s %s HTTP/1.1" "curl/7.46.0" - - arn:aws:elasticloadbalancing:us-east-1:000000000000:targetgroup/web/73e2d6bc24d8a067 "Root=1-58337262-36d228ad5d99923122bbe354" "www.example.com" "-" 0 %s "forward" "-" "-" "198.51.100.1:80" "200" "-" "-" TID_0`,
 		resp.Format(time.RFC3339Nano), method, url, created.Format(time.RFC3339Nano))
 }
 
@@ -42,7 +42,7 @@ func TestCountALB(t *testing.T) {
 	)
 	// an old-format entry (no request_creation_time): counted by its response time
 	old := start.Add(2 * time.Minute)
-	lines = append(lines, fmt.Sprintf(`http %s app/web/x 203.0.113.9:2817 10.0.0.1:80 0.000 0.001 0.000 200 200 34 366 "GET https://www.example.com:443/cart HTTP/1.1" "curl" - - arn "Root=1" "www.example.com" "-" 0`, old.Format(time.RFC3339Nano)))
+	lines = append(lines, fmt.Sprintf(`http %s app/web/x 203.0.113.9:2817 198.51.100.1:80 0.000 0.001 0.000 200 200 34 366 "GET https://www.example.com:443/cart HTTP/1.1" "curl" - - arn "Root=1" "www.example.com" "-" 0`, old.Format(time.RFC3339Nano)))
 	log := filepath.Join(dir, "alb.log.gz")
 	f, err := os.Create(log)
 	if err != nil {

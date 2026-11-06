@@ -17,7 +17,7 @@ import (
 	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/objstore/s3fake"
 )
 
-var testCreds = objstore.Credentials{AccessKey: "AKIAIOSFODNN7EXAMPLE", SecretKey: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"}
+var testCreds = objstore.Credentials{AccessKey: "EXAMPLEACCESSKEYIDONLY", SecretKey: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"}
 
 func fakeBucket(t *testing.T, page int) (*s3fake.Server, objstore.S3) {
 	t.Helper()
@@ -36,7 +36,7 @@ func TestS3SignsTheDocumentedExample(t *testing.T) {
 	req.Header.Set("Range", "bytes=0-9")
 	objstore.Sign(s, req)
 	auth := req.Header.Get("Authorization")
-	want := "AWS4-HMAC-SHA256 Credential=AKIAIOSFODNN7EXAMPLE/20130524/us-east-1/s3/aws4_request, " +
+	want := "AWS4-HMAC-SHA256 Credential=EXAMPLEACCESSKEYIDONLY/20130524/us-east-1/s3/aws4_request, " +
 		"SignedHeaders=host;range;x-amz-content-sha256;x-amz-date, Signature=f0e8bdb87c964420e857bd35b5d6ed310bd44f0170aba48dd91039c6036bdb41"
 	if auth != want {
 		t.Fatalf("Authorization:\n got %s\nwant %s", auth, want)
@@ -123,7 +123,7 @@ func TestS3RetriesAndRefusesBadCredentials(t *testing.T) {
 	if _, err := wrong.Open(ctx, "k/a.json.gz"); err == nil || !strings.Contains(err.Error(), "SignatureDoesNotMatch") {
 		t.Errorf("wrong secret: %v", err)
 	}
-	wrong.Creds = objstore.Credentials{AccessKey: "AKIAOTHER", SecretKey: testCreds.SecretKey}
+	wrong.Creds = objstore.Credentials{AccessKey: "OTHERACCESSKEYID", SecretKey: testCreds.SecretKey}
 	if _, err := wrong.List(ctx, ""); err == nil || !strings.Contains(err.Error(), "SignatureDoesNotMatch") {
 		t.Errorf("wrong access key: %v", err)
 	}
@@ -148,7 +148,7 @@ func TestS3RetriesAndRefusesBadCredentials(t *testing.T) {
 func TestLoopbackOrHTTPS(t *testing.T) {
 	for in, want := range map[string]bool{
 		"https://s3.example.com": true, "http://127.0.0.1:9000": true, "http://localhost:9000": true, "http://[::1]:9000": true,
-		"http://10.0.0.5:9000": false, "ftp://x": false, "https://s3.example.com/bucket": false, "": false, "https://x?y": false,
+		"http://198.51.100.5:9000": false, "ftp://x": false, "https://s3.example.com/bucket": false, "": false, "https://x?y": false,
 	} {
 		if got := objstore.LoopbackOrHTTPS(in); got != want {
 			t.Errorf("%q: %v, want %v", in, got, want)
