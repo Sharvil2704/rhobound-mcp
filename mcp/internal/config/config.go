@@ -13,6 +13,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/objstore"
 	"os"
 	"os/user"
 	"path/filepath"
@@ -71,14 +72,25 @@ type Engine struct {
 
 // Env is one environment's trace store.
 type Env struct {
-	Store          string  `json:"store"` // "dir" or "s3"
-	Root           string  `json:"root,omitempty"`
-	Prefix         string  `json:"prefix,omitempty"`
+	Store  string `json:"store"` // "dir" or "s3"
+	Root   string `json:"root,omitempty"`
+	Prefix string `json:"prefix,omitempty"`
+	// Bucket, Region and Endpoint are the s3 store's bucket, its Region (AWS_REGION when empty) and, for an
+	// S3-compatible store or a test fake, a path-style endpoint URL (https, or http on a loopback address).
+	Bucket         string  `json:"bucket,omitempty"`
+	Region         string  `json:"region,omitempty"`
+	Endpoint       string  `json:"endpoint,omitempty"`
 	RetryS         float64 `json:"retry_s,omitempty"`
 	BatchS         float64 `json:"batch_s,omitempty"`
 	SDKDelayS      float64 `json:"sdk_delay_s,omitempty"`
 	MaxListedBytes int64   `json:"max_listed_bytes,omitempty"`
 }
+
+// bucketRE is an S3 bucket name's shape; regionRE an AWS Region name's.
+var (
+	bucketRE = regexp.MustCompile(`^[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$`)
+	regionRE = regexp.MustCompile(`^[a-z]{2}(-[a-z]+)+-[0-9]+$`)
+)
 
 // Load reads and checks the configuration file at path. Relative locations in it are taken relative to the file's
 // folder; "~/" at the start of one is the user's home folder.
@@ -127,8 +139,8 @@ func Parse(b []byte, base string) (*Config, error) {
 		}
 		switch e.Store {
 		case "dir":
-			if e.Root == "" || e.Prefix != "" {
-				return nil, fmt.Errorf("config: envs.%s: a dir store has a root and no prefix", name)
+			if e.Root == "" || e.Prefix != "" || e.Bucket != "" || e.Region != "" || e.Endpoint != "" {
+				return nil, fmt.Errorf("config: envs.%s: a dir store has a root and no prefix, bucket, region or endpoint", name)
 			}
 			if e.Root, err = resolve(e.Root, base); err != nil {
 				return nil, fmt.Errorf("config: envs.%s.root: %w", name, err)
@@ -136,6 +148,15 @@ func Parse(b []byte, base string) (*Config, error) {
 		case "s3":
 			if e.Prefix == "" || !strings.HasSuffix(e.Prefix, "/") || e.Root != "" {
 				return nil, fmt.Errorf("config: envs.%s: an s3 store has a prefix ending in / and no root", name)
+			}
+			if !bucketRE.MatchString(e.Bucket) {
+				return nil, fmt.Errorf("config: envs.%s: an s3 store names its bucket (3 to 63 characters of [a-z0-9.-])", name)
+			}
+			if e.Region != "" && !regionRE.MatchString(e.Region) {
+				return nil, fmt.Errorf("config: envs.%s: region %q is not an AWS Region name", name, e.Region)
+			}
+			if e.Endpoint != "" && !objstore.LoopbackOrHTTPS(e.Endpoint) {
+				return nil, fmt.Errorf("config: envs.%s: endpoint must be an https URL, or http on a loopback address, with no path or query", name)
 			}
 		}
 		c.Envs[name] = e

@@ -78,3 +78,8 @@ orchestration and the time saved: [RESULTS.md](RESULTS.md).
   an environment's baseline fit from its trace store in one command (fetch, `check --cut`, `fit --name ENV`, store the
   artifact, move the baseline), for a schedule or by hand; a refused window leaves the baseline as it was
   ([DEPLOY_AWS.md](DEPLOY_AWS.md) 14). `fit_start` with `env` still answers that the fetcher is not wired into the server.
+- The `s3` store (`mcp/internal/objstore`): a read-only S3 client in the standard library (Signature Version 4,
+  ListObjectsV2 paging, ranged reads, bounded retries), so `refit` and the fetcher read an environment's window from
+  the bucket the Collector writes to; configured by `bucket`, `region` and an optional `endpoint`
+  ([DEPLOY_AWS.md](DEPLOY_AWS.md) 14). Credentials come from the environment only. A fake S3 endpoint for tests and
+  dry runs (`s3fake`) verifies signatures with the credentials it is given.

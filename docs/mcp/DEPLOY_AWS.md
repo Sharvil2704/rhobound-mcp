@@ -454,7 +454,9 @@ The server reads a config file that maps names to locations; tools take names, n
   "schema": "rhobound-mcp.config/v1",
   "engine": {"path": "/usr/local/bin/rhobound", "sha256": "<hex of the binary>"},
   "state_dir": "~/.local/state/rhobound-mcp",
-  "envs": {"staging": {"store": "dir", "root": "/data/captures/staging"}},
+  "envs": {"staging": {"store": "dir", "root": "/data/captures/staging"},
+           "prod": {"store": "s3", "bucket": "acme-traces", "region": "eu-west-1", "prefix": "env=prod/",
+                    "retry_s": 300, "batch_s": 10, "sdk_delay_s": 5}},
   "captures": {"demo": "/data/captures/demo", "ab-old": "/data/ab/old", "ab-new": "/data/ab/new"},
   "policies": {"default": "/work/repo/.rhobound/policy.json"},
   "profile": "default",
@@ -469,7 +471,14 @@ window an environment's baseline fit is still used before `fit.expired`. The std
 `state_dir/server` at start and every hour (ARCHITECTURE.md 5.10). `examples/mcp/config.example.json` maps the
 repository's fixtures; its engine sha256 is a placeholder, so the server refuses to start (`server.engine_mismatch`)
 until it holds the sha256 of the binary at `engine.path`. A `dir` store lays files out as the S3 exporter does
-(`env=staging/year=.../traces_<id>.json.gz`), so the same fetcher code runs locally and in tests. The slice's server
+(`env=staging/year=.../traces_<id>.json.gz`), so the same fetcher code runs locally and in tests. An `s3` store names
+its bucket and Region (`AWS_REGION` when absent) and the prefix the Collector writes under; the client is the
+standard library's, signing with Signature Version 4 from the credentials in the environment (`AWS_ACCESS_KEY_ID`,
+`AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`: what Lambda sets for its role; on ECS or EC2 export the role's
+credentials before a refit, since the metadata endpoints are not read in this build). An `endpoint` (https, or
+http on a loopback address) makes requests path-style for an S3-compatible store or the test fake
+(`go run ./internal/objstore/s3fake/cmd/s3fake --root DIR --bucket NAME` from `mcp/`, which serves a folder as one
+bucket and verifies every signature). The slice's server
 does not run that fetcher yet (ARCHITECTURE.md 12): `fit_start` with `env` answers a protocol error (`-32602`), and
 `context` and `predict` with `env` use a baseline fit that another step stored in `state_dir/server` (`fit.no_baseline`
 until one is). That step makes the fit with `--name`, and stores it as the server's store lays out its files (folders

@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"net/http/httptest"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -22,6 +23,7 @@ import (
 
 	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/config"
 	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/objstore"
+	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/objstore/s3fake"
 	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/runner"
 	"github.com/Sharvil2704/rhobound-mcp/mcp/internal/state"
 )
@@ -329,8 +331,24 @@ func TestRunMakesTheBaselineFromADirStore(t *testing.T) {
 }
 
 func TestStoreForAndOptions(t *testing.T) {
-	if _, err := StoreFor(config.Env{Store: "s3", Prefix: "env=prod/"}); err == nil {
-		t.Error("s3 should not be in this build")
+	t.Setenv("AWS_ACCESS_KEY_ID", "")
+	t.Setenv("AWS_SECRET_ACCESS_KEY", "")
+	t.Setenv("AWS_REGION", "")
+	t.Setenv("AWS_DEFAULT_REGION", "")
+	if _, err := StoreFor(config.Env{Store: "s3", Prefix: "env=prod/", Bucket: "b"}); err == nil || !strings.Contains(err.Error(), "credentials") {
+		t.Errorf("s3 without credentials: %v", err)
+	}
+	t.Setenv("AWS_ACCESS_KEY_ID", "AKIAX")
+	t.Setenv("AWS_SECRET_ACCESS_KEY", "secret")
+	if _, err := StoreFor(config.Env{Store: "s3", Prefix: "env=prod/", Bucket: "b"}); err == nil || !strings.Contains(err.Error(), "region") {
+		t.Errorf("s3 without a region: %v", err)
+	}
+	t.Setenv("AWS_REGION", "eu-west-1")
+	if s, err := StoreFor(config.Env{Store: "s3", Prefix: "env=prod/", Bucket: "b"}); err != nil || s.(objstore.S3).Region != "eu-west-1" || s.(objstore.S3).Creds.AccessKey != "AKIAX" {
+		t.Errorf("s3 from the environment: %v %v", s, err)
+	}
+	if s, err := StoreFor(config.Env{Store: "s3", Prefix: "p/", Bucket: "b", Region: "us-west-2", Endpoint: "http://127.0.0.1:1"}); err != nil || s.(objstore.S3).Endpoint != "http://127.0.0.1:1" {
+		t.Errorf("s3 with an endpoint: %v %v", s, err)
 	}
 	if s, err := StoreFor(config.Env{Store: "dir", Root: "/x"}); err != nil || s.(objstore.Dir).Root != "/x" {
 		t.Errorf("dir: %v %v", s, err)
@@ -340,5 +358,58 @@ func TestStoreForAndOptions(t *testing.T) {
 	}
 	if got := workersFlag(map[string]int{"b": 2, "a": 1}); got != "--workers=a=1,b=2" {
 		t.Errorf("workers flag %q", got)
+	}
+}
+
+func TestRunFromAnS3Store(t *testing.T) {
+	bin := realEngine(t)
+	root := t.TempDir()
+	layoutLoop(t, filepath.Join(root, "store"))
+	creds := objstore.Credentials{AccessKey: "AKIAFAKEFAKEFAKEFAKE", SecretKey: "fake-secret"}
+	fake := &s3fake.Server{Bucket: "traces", Creds: creds, PageSize: 5}
+	if err := fake.Load(filepath.Join(root, "store")); err != nil {
+		t.Fatal(err)
+	}
+	ts := httptest.NewServer(fake)
+	defer ts.Close()
+	t.Setenv("AWS_ACCESS_KEY_ID", creds.AccessKey)
+	t.Setenv("AWS_SECRET_ACCESS_KEY", creds.SecretKey)
+	t.Setenv("AWS_SESSION_TOKEN", "")
+	b, _ := os.ReadFile(bin)
+	eng, err := runner.NewExec(bin, strings.TrimPrefix(state.Digest(b), "sha256:"), 2*time.Minute, []string{"RHOBOUND_STATE=" + filepath.Join(root, "engine")})
+	if err != nil {
+		t.Fatal(err)
+	}
+	eng.TempRoot = filepath.Join(root, "work")
+	os.MkdirAll(eng.TempRoot, 0o700)
+	st, err := state.NewDir(filepath.Join(root, "server"), nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	start, _ := time.Parse(time.RFC3339Nano, loopStart)
+	end, _ := time.Parse(time.RFC3339Nano, loopEnd)
+	// the loop's objects sit at the root of the bucket: an s3 store needs a prefix, so they are served under one
+	fake2 := &s3fake.Server{Bucket: "traces", Creds: creds, PageSize: 5}
+	ents, _ := os.ReadDir(filepath.Join(root, "store"))
+	_ = ents
+	if err := fake2.Load(filepath.Join(root)); err != nil { // keys are store/year=.../...
+		t.Fatal(err)
+	}
+	ts2 := httptest.NewServer(fake2)
+	defer ts2.Close()
+	opt := Options{Env: "loop", Config: config.Env{Store: "s3", Prefix: "store/", Bucket: "traces", Region: "us-east-1", Endpoint: ts2.URL},
+		Start: start, End: end, Runner: eng, State: st, Work: filepath.Join(root, "work")}
+	res, err := Run(context.Background(), opt)
+	if err != nil {
+		t.Fatalf("refit over s3: %v", err)
+	}
+	if res.Files != 18 || res.Verdict != "admitted-with-doubts" || !strings.HasPrefix(res.Fit, "sha256:") {
+		t.Errorf("result: %+v", res)
+	}
+	if fake2.Requests() < 18+1 {
+		t.Errorf("the fake served %d requests; the fetcher lists, sniffs and downloads 18 objects", fake2.Requests())
+	}
+	if d, _ := st.Baseline(context.Background(), "loop"); d != res.Fit {
+		t.Errorf("baseline %s, want %s", d, res.Fit)
 	}
 }

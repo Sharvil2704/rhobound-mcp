@@ -112,7 +112,23 @@ func StoreFor(e config.Env) (objstore.Store, error) {
 	case "dir":
 		return objstore.Dir{Root: e.Root}, nil
 	case "s3":
-		return nil, errors.New("refit: the s3 store is not in this build; lay the window out as the S3 exporter writes it and use a dir store")
+		creds, ok := objstore.CredentialsFromEnv()
+		if !ok {
+			return nil, errors.New("refit: no AWS credentials in the environment (AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY, " +
+				"with AWS_SESSION_TOKEN for a role's temporary ones); a role's credentials served by the container or instance " +
+				"metadata endpoint are not read in this build: export them first")
+		}
+		region := e.Region
+		if region == "" {
+			region = objstore.RegionFromEnv()
+		}
+		if region == "" && e.Endpoint == "" {
+			return nil, errors.New("refit: the s3 store needs a region (envs.NAME.region, or AWS_REGION)")
+		}
+		if region == "" {
+			region = "us-east-1" // an endpoint's store signs under any Region name; AWS's needs the bucket's
+		}
+		return objstore.S3{Bucket: e.Bucket, Region: region, Endpoint: e.Endpoint, Creds: creds}, nil
 	}
 	return nil, fmt.Errorf("refit: store %q is not dir or s3", e.Store)
 }

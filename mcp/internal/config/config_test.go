@@ -21,7 +21,7 @@ func good() string {
   "engine": {"path": "/usr/local/bin/rhobound", "sha256": "` + sha + `"},
   "state_dir": "state",
   "envs": {"staging": {"store": "dir", "root": "traces/staging"},
-           "prod": {"store": "s3", "prefix": "env=prod/"}},
+           "prod": {"store": "s3", "prefix": "env=prod/", "bucket": "acme-traces", "region": "eu-west-1"}},
   "captures": {"demo": "captures/demo", "loop": "/data/loop", "ab/old": "ab/old"},
   "policies": {"default": "policy.json"}
 }`
@@ -203,6 +203,30 @@ func TestTildeWithoutHome(t *testing.T) {
 			strings.Repeat("0", 64)+`"},"state_dir":"~/.local/state/rhobound-mcp"}`), "/")
 		if err != nil || c.StateDir != filepath.Join(u.HomeDir, ".local", "state", "rhobound-mcp") {
 			t.Errorf("HOME=%q: %v %+v", home, err, c)
+		}
+	}
+}
+
+// An s3 store names its bucket; its Region and endpoint have shapes; a dir store has none of them.
+func TestEnvS3Fields(t *testing.T) {
+	base := `{"schema":"rhobound-mcp.config/v1","engine":{"path":"/bin/true","sha256":"` + strings.Repeat("ab", 32) + `"},"state_dir":"/tmp/s","envs":{"e":%s}}`
+	for env, wantErr := range map[string]string{
+		`{"store":"s3","prefix":"p/","bucket":"traces","region":"us-east-1"}`:                "",
+		`{"store":"s3","prefix":"p/","bucket":"traces","endpoint":"http://127.0.0.1:9000"}`:  "",
+		`{"store":"s3","prefix":"p/","bucket":"traces","endpoint":"https://s3.example.com"}`: "",
+		`{"store":"s3","prefix":"p/"}`:                                                              "bucket",
+		`{"store":"s3","prefix":"p/","bucket":"Traces"}`:                                            "bucket",
+		`{"store":"s3","prefix":"p/","bucket":"traces","region":"US East"}`:                         "region",
+		`{"store":"s3","prefix":"p/","bucket":"traces","endpoint":"http://10.0.0.5:9000"}`:          "endpoint",
+		`{"store":"s3","prefix":"p/","bucket":"traces","endpoint":"https://s3.example.com/bucket"}`: "endpoint",
+		`{"store":"dir","root":"/data","bucket":"traces"}`:                                          "dir store",
+	} {
+		_, err := Parse([]byte(fmt.Sprintf(base, env)), "/tmp")
+		if wantErr == "" && err != nil {
+			t.Errorf("%s: %v", env, err)
+		}
+		if wantErr != "" && (err == nil || !strings.Contains(err.Error(), wantErr)) {
+			t.Errorf("%s: %v, want an error mentioning %q", env, err, wantErr)
 		}
 	}
 }
