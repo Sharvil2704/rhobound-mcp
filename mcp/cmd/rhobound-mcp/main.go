@@ -175,6 +175,8 @@ func usage(w io.Writer) {
 		"  rhobound-mcp http  --config FILE [--listen ADDR] serve over HTTP (127.0.0.1:8000 by default)\n"+
 		"  rhobound-mcp version [--json]                    the version, and with --json the build information\n"+
 		"  rhobound-mcp init [--engine FILE ...] [--write]  check, write and register a configuration with Muse Code\n"+
+		"  rhobound-mcp refit --config FILE --env NAME --window START,END|--last D [--request-count F] [--json]\n"+
+		"                                                   an environment's baseline fit from its trace store\n"+
 		"  rhobound-mcp muse-hook api|session-start|stop    the Muse Code plugin's hooks (exit 0, or 10 to remind)\n",
 		strings.Join(names, ", "))
 }

@@ -74,3 +74,7 @@ orchestration and the time saved: [RESULTS.md](RESULTS.md).
 - `rhobound count`: an independent request count (`rhobound.request-count/v1`) from an ALB access log, JSON-lines
   access logs or a Prometheus instant query, for `check --request-count` ([USAGE.md](../USAGE.md) 11, [DATA.md](DATA.md) 6).
   Before it, the count was a file written by hand.
+- `rhobound-mcp refit --config FILE --env NAME --window START,END|--last D [--request-count F] [--keep DIR] [--json]`:
+  an environment's baseline fit from its trace store in one command (fetch, `check --cut`, `fit --name ENV`, store the
+  artifact, move the baseline), for a schedule or by hand; a refused window leaves the baseline as it was
+  ([DEPLOY_AWS.md](DEPLOY_AWS.md) 14). `fit_start` with `env` still answers that the fetcher is not wired into the server.

@@ -485,6 +485,24 @@ $ install -m 0600 FIT/fit.json STATE/server/artifacts/$hex
 $ (umask 077; printf '{"fit":"sha256:%s"}' "$hex" > STATE/server/baselines/staging.json)
 ```
 
+`rhobound-mcp refit` does those steps as one command, from the environment's trace store as the configuration names it
+(a `dir` store laid out as the S3 exporter writes, `env=.../year=.../minute=.../traces_<id>.json.gz` under `root`): it
+fetches the window (DATA.md 4.3, with the store's margins), runs `check --window --cut entry-start` (with
+`--request-count` when one is given) and `fit --manifest --name ENV` through the configured engine, stores the fit's
+bytes under `state_dir/server/artifacts` and moves `baselines/ENV.json` to it, and prints the result (`--json`:
+`rhobound-mcp.refit/v1` with the fit's digest, the previous baseline, the cut's manifest digest and every finding).
+A step that refuses the window (the fetcher's or the check's coded refusal, the engine's refusal of the fit) exits 4
+with the refusal and the findings as JSON, and the baseline stays as it was; the window is `--window START,END` or
+`--last D` (ending `--settle` before now, by default the store's export margin: its `retry_s + batch_s + sdk_delay_s`,
+or 7 min), the shape a schedule asks for:
+
+```
+$ bin/rhobound-mcp refit --config config.json --env staging --last 10m --request-count COUNT --json
+$ bin/rhobound-mcp refit --config config.json --env staging --window START,END --keep out/staging
+```
+
+The manual steps below are what it does; they remain for a fit made elsewhere (another machine, another store).
+
 `STATE` is the configured `state_dir`, and `COUNT` the load generator's count of the window's requests
 (`rhobound.request-count/v1`, DATA.md 4.3). The cut's manifest then records the count, and the fit's `manifest_digest`
 is the `manifest_sha256` the cut printed. Without `--request-count` the cut and the fit carry the doubt
