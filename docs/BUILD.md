@@ -115,13 +115,17 @@ $ dist/rhobound version
 rhobound 0.1.0-dev
 ```
 
-Without a clone, once the repository is public:
+Do not install this repository's CLI with `go install github.com/Sharvil2704/rhobound-cli/cmd/rhobound@latest`: that
+path is the rhobound-cli repository, whose default branch is the engine without `check`, `fit`, `gate` or the MCP
+server. Install from a clone of this repository:
 
 ```
-go install github.com/Sharvil2704/rhobound-cli/cmd/rhobound@latest
+git clone https://github.com/Sharvil2704/rhobound-mcp && cd rhobound-mcp
+go install ./cmd/rhobound
+(cd mcp && go install ./cmd/rhobound-mcp)
 ```
 
-(Not run here: it needs network access. It builds without `-ldflags`, so `rhobound version` prints `0.1.0-dev`.)
+(Built without `-ldflags`, so `rhobound version` prints `0.1.0-dev`.)
 
 ## The Makefile
 
