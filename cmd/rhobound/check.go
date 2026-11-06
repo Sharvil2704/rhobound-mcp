@@ -28,9 +28,10 @@ const (
 
 func init() {
 	register("check", command{run: cmdCheck, usage: `  rhobound check   CAPTURE|--manifest M [--request-count F] [--kept-share S] [--sampler svc=NAME]
-                   [--probe-route R] [--pod-identity host] [--write-manifest] [--json]
+                   [--probe-route R] [--pod-identity host] [--write-manifest] [--fleet] [--json]
                    [--window START,END --cut entry-start --out DIR]
                                             the data contract: exit 0 admitted, 4 refused, 2 error
+                                            (--fleet: the findings per service and the modelable share of journeys)
 `})
 }
 
@@ -41,7 +42,7 @@ func (l *listFlag) String() string     { return strings.Join(*l, ",") }
 func (l *listFlag) Set(v string) error { *l = append(*l, v); return nil }
 
 const checkUsage = "usage: rhobound check CAPTURE|--manifest M [--request-count F] [--kept-share S] [--sampler svc=NAME] " +
-	"[--probe-route R] [--pod-identity host] [--write-manifest] [--window START,END --cut entry-start --out DIR] [--json]"
+	"[--probe-route R] [--pod-identity host] [--write-manifest] [--fleet] [--window START,END --cut entry-start --out DIR] [--json]"
 
 func cmdCheck(args []string, out, errw io.Writer) int {
 	fail := func(err error) int {
@@ -59,6 +60,7 @@ func cmdCheck(args []string, out, errw io.Writer) int {
 	cut := fs.String("cut", "", "entry-start: cut whole traces by their entry span's start")
 	outDir := fs.String("out", "", "the folder to write the canonical capture to")
 	asJSON := fs.Bool("json", false, "print the check report as JSON")
+	fleetFlag := fs.Bool("fleet", false, "print the fleet view instead of the report: the findings per service, the modelable share of journeys")
 	var routes, samplers listFlag
 	fs.Var(&routes, "probe-route", "a route that is a probe (repeatable)")
 	fs.Var(&samplers, "sampler", "svc=NAME: the SDK sampler of a service (repeatable)")
@@ -198,6 +200,19 @@ func cmdCheck(args []string, out, errw io.Writer) int {
 		if code == checkAdmitted {
 			fmt.Fprintf(errw, "wrote the canonical capture to %s (%d objects, manifest %s)\n", *outDir, len(final.Objects), rep.Manifest)
 		}
+	}
+	if *fleetFlag {
+		v := fleet(rep, d)
+		if *asJSON {
+			b, err := contract.Canonical(v)
+			if err != nil {
+				return fail(err)
+			}
+			fmt.Fprintf(out, "%s\n", b)
+		} else {
+			writeFleetText(out, v)
+		}
+		return code
 	}
 	if *asJSON {
 		b, err := contract.Canonical(rep)

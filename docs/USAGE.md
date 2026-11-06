@@ -762,7 +762,7 @@ newline. The examples run on `testdata/mcp/loop`, the capture-chain with image d
 
 | command | what it does | exit codes |
 |---|---|---|
-| `rhobound check CAPTURE\|--manifest M [--request-count F] [--kept-share S] [--sampler svc=NAME]... [--probe-route R]... [--pod-identity host] [--write-manifest] [--window START,END --cut entry-start --out DIR] [--json]` | the data contract: every finding with its code and fix; `--cut` writes the canonical capture of a window, and a `--request-count` given with it counts that window. Some refusals of a capture (`trace.broken_traces`, the inference's) are raised only when `fit` reads the traces, so judge a fit by its own exit status, not by `check`'s | 0 admitted (doubts listed), 4 refused, 2 tool error |
+| `rhobound check CAPTURE\|--manifest M [--request-count F] [--kept-share S] [--sampler svc=NAME]... [--probe-route R]... [--pod-identity host] [--write-manifest] [--window START,END --cut entry-start --out DIR] [--json]` | the data contract: every finding with its code and fix; `--cut` writes the canonical capture of a window, and a `--request-count` given with it counts that window. Some refusals of a capture (`trace.broken_traces`, the inference's) are raised only when `fit` reads the traces, so judge a fit by its own exit status, not by `check`'s. `--fleet` prints the fleet view instead of the report (`rhobound-cli.fleet/v1`): the findings read per service (status admitted, doubt or refused by the findings whose subject is that service, with the first fix), each service's pods, spans, entries and journeys, the capture-wide findings, and per entry the share of journeys that touch no refused service: what a cut by journey would keep, since a refusal refuses the whole capture | 0 admitted (doubts listed), 4 refused, 2 tool error |
 | `rhobound count --from alb\|jsonl\|prometheus --window START,END --entry NAME=PREFIX... --out FILE [--source alb\|apigw\|ingress\|loadgen] [--probe-route R]... [--time-key K] [--route-key K] [--label L] [--json] FILE...` | an independent request count for `check --request-count` (`rhobound.request-count/v1`, [mcp/DATA.md](mcp/DATA.md) 6) from a source outside the trace pipeline: an ALB access log (`--from alb`, counted by the time the load balancer received each request), JSON-lines access logs with a time and a route key (`--from jsonl`: API Gateway, an ingress controller), or the JSON answer of a Prometheus instant query over the window (`--from prometheus --label L`, one count per label value). A request counts when its time is in [START, END), its path is not a `--probe-route` prefix and an `--entry` rule's prefix matches it (the longest wins); every named entry is written, 0 when nothing matched, and the summary says what was not counted: probes, outside the window, no matching rule, unreadable lines. Give it the same `--window` as `check` | 0, 2 tool error |
 | `rhobound fit CAPTURE\|--manifest M --out DIR [--workers svc=N,...] [--kept-share F] [--pod-identity host] [--request-count F] [--sampler svc=NAME]... [--probe-route R]... [--name NAME] [--plain] [--json]` | `check`, then the fit record `DIR/fit.json` (`rhobound.fit/v1`); prints its digest | 0, 1 refused |
 | `rhobound predict --fit F [--patch P \| --changes C] [--report v1] [--load-scale S] [--json]` | predict from a fit: report v2, or with `--report v1` the same bytes as `predict CAPTURE` given the same options, except the `capture` field when the fit was made with `--name` (it then holds that name). The fit's kept share is one of those options: a fit derives it from a constant `th` of the entry spans or from a request count (DATA.md 3.8), where `predict CAPTURE` takes 1 unless given `--kept-share`, so pass the fit's `kept_share.value` as `--kept-share` to compare the two. `--load-scale S` is a what-if at S times the fit's external rate (below) | 0, 1 refused |
@@ -908,3 +908,19 @@ kept share 1 (counted); capture manifest sha256:2d1b3d20b1ff3798bbb6d5b6da906c54
 
 A count twice the traces' entries reads as a kept share of 0.5 (`trace.rate_mismatch`, `fit.queue_rebuild_sampled`,
 both doubts the default policy holds); a count whose window is 30 s off the capture's is refused (`count.window_mismatch`).
+
+The fleet view of the same capture, which a team reads before any fit to see which services can be modelled:
+
+```
+$ bin/rhobound check testdata/mcp/loop --fleet
+fleet: admitted; 3 services; 3099 journeys, 100.0% modelable (0 touch a refused service)
+  service                      status    pods   spans entries journeys  codes
+  a                            admitted     1    6198    3099     3099
+  b                            admitted     1    6198       0     3099
+  c                            admitted     1    3099       0     3099
+  entry a                      3099 journeys, 3099 modelable (100.0%)
+```
+
+On a refused capture the view still prints, with exit 4: a finding about one service (`trace.mixed_images b`) marks
+that service `refused` and every journey through it as not modelable; a finding with no service as its subject
+(`trace.no_server_spans`, a store or count finding) is listed as a capture finding.

@@ -83,3 +83,6 @@ orchestration and the time saved: [RESULTS.md](RESULTS.md).
   the bucket the Collector writes to; configured by `bucket`, `region` and an optional `endpoint`
   ([DEPLOY_AWS.md](DEPLOY_AWS.md) 14). Credentials come from the environment only. A fake S3 endpoint for tests and
   dry runs (`s3fake`) verifies signatures with the credentials it is given.
+- `rhobound check --fleet`: the findings per service and the modelable share of journeys, so that a team sees before
+  any fit which of its services can be modelled and what one refusal costs ([USAGE.md](../USAGE.md) 11). The check
+  report itself is unchanged.
