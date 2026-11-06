@@ -763,6 +763,7 @@ newline. The examples run on `testdata/mcp/loop`, the capture-chain with image d
 | command | what it does | exit codes |
 |---|---|---|
 | `rhobound check CAPTURE\|--manifest M [--request-count F] [--kept-share S] [--sampler svc=NAME]... [--probe-route R]... [--pod-identity host] [--write-manifest] [--window START,END --cut entry-start --out DIR] [--json]` | the data contract: every finding with its code and fix; `--cut` writes the canonical capture of a window, and a `--request-count` given with it counts that window. Some refusals of a capture (`trace.broken_traces`, the inference's) are raised only when `fit` reads the traces, so judge a fit by its own exit status, not by `check`'s | 0 admitted (doubts listed), 4 refused, 2 tool error |
+| `rhobound count --from alb\|jsonl\|prometheus --window START,END --entry NAME=PREFIX... --out FILE [--source alb\|apigw\|ingress\|loadgen] [--probe-route R]... [--time-key K] [--route-key K] [--label L] [--json] FILE...` | an independent request count for `check --request-count` (`rhobound.request-count/v1`, [mcp/DATA.md](mcp/DATA.md) 6) from a source outside the trace pipeline: an ALB access log (`--from alb`, counted by the time the load balancer received each request), JSON-lines access logs with a time and a route key (`--from jsonl`: API Gateway, an ingress controller), or the JSON answer of a Prometheus instant query over the window (`--from prometheus --label L`, one count per label value). A request counts when its time is in [START, END), its path is not a `--probe-route` prefix and an `--entry` rule's prefix matches it (the longest wins); every named entry is written, 0 when nothing matched, and the summary says what was not counted: probes, outside the window, no matching rule, unreadable lines. Give it the same `--window` as `check` | 0, 2 tool error |
 | `rhobound fit CAPTURE\|--manifest M --out DIR [--workers svc=N,...] [--kept-share F] [--pod-identity host] [--request-count F] [--sampler svc=NAME]... [--probe-route R]... [--name NAME] [--plain] [--json]` | `check`, then the fit record `DIR/fit.json` (`rhobound.fit/v1`); prints its digest | 0, 1 refused |
 | `rhobound predict --fit F [--patch P \| --changes C] [--report v1] [--load-scale S] [--json]` | predict from a fit: report v2, or with `--report v1` the same bytes as `predict CAPTURE` given the same options, except the `capture` field when the fit was made with `--name` (it then holds that name). The fit's kept share is one of those options: a fit derives it from a constant `th` of the entry spans or from a request count (DATA.md 3.8), where `predict CAPTURE` takes 1 unless given `--kept-share`, so pass the fit's `kept_share.value` as `--kept-share` to compare the two. `--load-scale S` is a what-if at S times the fit's external rate (below) | 0, 1 refused |
 | `rhobound budget --fit F [--policy P] [--service=S] [--kinds=own_ms,load_scale] --json` | how much a service may add per visit: the largest change under the threshold, and the safe one with the model's band; without `--policy` only the utilization limits bind, and the view carries the doubt `budget.no_policy` | 0, 1, 2 usage |
@@ -891,3 +892,19 @@ the one `diff-fit` printed, with the item `{"op": "own_ms", "service": "b", "val
 "measured-ab", "evidence": ["sha256:..."]}`. The value must be the record's delta exactly; the CLI widens it by ±2
 standard errors from the record in its own store. [mcp/ARCHITECTURE.md](mcp/ARCHITECTURE.md) explains the gate's
 rules; [mcp/DATA.md](mcp/DATA.md) every input and code.
+
+An independent request count from a load balancer's log, then the check with it (the fixture's own count is the load
+generator's; here an ALB access log of the same 3,099 requests, with 40 probe lines and 5 requests after the window):
+
+```
+$ bin/rhobound count --from alb --window 2023-11-14T22:13:20.032968448Z,2023-11-14T22:15:20.018616064Z --entry a=/ --probe-route /healthz --out rc.json alb.log
+count: 3099 requests in 2023-11-14T22:13:20.032968448Z,2023-11-14T22:15:20.018616064Z (alb), written to rc.json
+  a 3099
+lines 3144: counted 3099, probes 40, unmatched 0, outside the window 5, skipped 0
+$ bin/rhobound check testdata/mcp/loop --request-count rc.json
+check: admitted (rhobound.contract/v1.0)
+kept share 1 (counted); capture manifest sha256:2d1b3d20b1ff3798bbb6d5b6da906c54c8172142d3283d1bf85187171a552ec2
+```
+
+A count twice the traces' entries reads as a kept share of 0.5 (`trace.rate_mismatch`, `fit.queue_rebuild_sampled`,
+both doubts the default policy holds); a count whose window is 30 s off the capture's is refused (`count.window_mismatch`).

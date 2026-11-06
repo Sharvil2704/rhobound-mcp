@@ -633,6 +633,16 @@ its digest (`sampling.evidence: counted`, `independent_count`), so a fit of that
 printed. A cut the count refuses is removed. A `request-count.json` in the capture's own folder counts the capture as
 read, cut or not.
 
+`rhobound count` writes this document from a source outside the trace pipeline (USAGE.md 11): an ALB access log
+(`--from alb`, counted by the time the load balancer received each request, `request_creation_time`), JSON-lines
+access logs with a time and a route key (`--from jsonl`: API Gateway, an ingress controller), or the JSON answer of a
+Prometheus instant query over the window (`--from prometheus --label L`, `sum by (L) (increase(...[W]))` evaluated at
+END). Give it the same `--window` as `check --window`, the path prefix of each entry service (`--entry frontend=/`) and
+the probe routes (`--probe-route /healthz`). It writes every named entry (0 when nothing matched) and reports the
+requests it did not count (probes, outside the window, no matching rule, unreadable lines): explain those before
+trusting the count. The source is declared (`--source`), one of the four independent ones above; `count` never writes
+`appsignals`.
+
 ## 7. Resource metrics (I5) [later]
 
 ```json

@@ -68,3 +68,9 @@ On AWS with kshop (10 services) at 100 req/s, every prediction sealed before pro
 once, storefront +10.55..+13.20 against +11.87; a fan-out change +7.21..+8.18 against +8.17; peak load from a today's A/B,
 +16.35 against +16.27. Six regressions blocked, every no-op and the Meta agent's change passed. Details, the Meta
 orchestration and the time saved: [RESULTS.md](RESULTS.md).
+
+## Since the public release (2026-11-06)
+
+- `rhobound count`: an independent request count (`rhobound.request-count/v1`) from an ALB access log, JSON-lines
+  access logs or a Prometheus instant query, for `check --request-count` ([USAGE.md](../USAGE.md) 11, [DATA.md](DATA.md) 6).
+  Before it, the count was a file written by hand.
